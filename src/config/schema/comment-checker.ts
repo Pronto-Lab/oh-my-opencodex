@@ -1,8 +1,8 @@
 import { z } from "zod"
 
-export const CommentCheckerConfigSchema = z.object({
-  /** Custom prompt to replace the default warning message. Use {{comments}} placeholder for detected comments XML. */
-  custom_prompt: z.string().optional(),
+export const CommentCheckerSchema = z.object({
+  enabled: z.boolean().optional(),
+  auto_fix: z.boolean().optional(),
 })
 
-export type CommentCheckerConfig = z.infer<typeof CommentCheckerConfigSchema>
+export type CommentChecker = z.infer<typeof CommentCheckerSchema>
