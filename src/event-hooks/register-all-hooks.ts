@@ -1,6 +1,19 @@
 import type { OhMyCodexConfig } from "../config/schema/oh-my-codex-config"
 import type { HookRegistry } from "./hook-registry"
 import {
+  createBackgroundCompletedHook,
+  createBoulderHook,
+  createEmptyResponseDetectorHook,
+  createRalphLoopHook,
+  createStopGuardHook,
+} from "./continuation"
+import {
+  createCommandWatcherHook,
+  createFileChangeCheckerHook,
+  createMcpToolWatcherHook,
+  createTodoListWatcherHook,
+} from "./item-hooks"
+import {
   createAutoUpdateCheckerHook,
   createKeywordDetectorHook,
   createNotificationHook,
@@ -9,79 +22,101 @@ import {
   createUsageMonitorHook,
 } from "./session"
 import {
+  createAutoSlashCommandHook,
+  createCategorySkillReminderHook,
+} from "./skill-hooks"
+import {
   createTurnCompletedHook,
   createTurnFailedHook,
   createTurnStartedHook,
 } from "./turn-hooks"
 
+function isHookEnabled(disabledHooks: Set<string>, name: string): boolean {
+  return !disabledHooks.has(name)
+}
+
 export function registerAllHooks(
   registry: HookRegistry,
   config: OhMyCodexConfig,
+  workingDirectory: string,
 ): void {
-  const turnStarted = createTurnStartedHook(config)
-  const turnCompleted = createTurnCompletedHook(config)
-  const turnFailed = createTurnFailedHook(config)
+  const disabledHooks = new Set(config.disabled_hooks ?? [])
 
-  const sessionRecovery = createSessionRecoveryHook(config)
-  const usageMonitor = createUsageMonitorHook(config)
-  const notification = createNotificationHook(config)
-  const autoUpdateChecker = createAutoUpdateCheckerHook(config)
-  const keywordDetector = createKeywordDetectorHook(config)
-  const thinkMode = createThinkModeHook(config)
+  if (isHookEnabled(disabledHooks, "turn-started-hook")) {
+    const hook = createTurnStartedHook(config)
+    registry.register("turn-started-hook", hook.event, hook.handler, hook.priority)
+  }
+  if (isHookEnabled(disabledHooks, "turn-completed-hook")) {
+    const hook = createTurnCompletedHook(config)
+    registry.register("turn-completed-hook", hook.event, hook.handler, hook.priority)
+  }
+  if (isHookEnabled(disabledHooks, "turn-failed-hook")) {
+    const hook = createTurnFailedHook(config)
+    registry.register("turn-failed-hook", hook.event, hook.handler, hook.priority)
+  }
 
-  registry.register(
-    "turn-started-hook",
-    turnStarted.event,
-    turnStarted.handler,
-    turnStarted.priority,
-  )
-  registry.register(
-    "turn-completed-hook",
-    turnCompleted.event,
-    turnCompleted.handler,
-    turnCompleted.priority,
-  )
-  registry.register(
-    "turn-failed-hook",
-    turnFailed.event,
-    turnFailed.handler,
-    turnFailed.priority,
-  )
+  if (isHookEnabled(disabledHooks, "session-recovery-hook")) {
+    const hook = createSessionRecoveryHook(config)
+    registry.register("session-recovery-hook", hook.event, hook.handler, hook.priority)
+  }
+  if (isHookEnabled(disabledHooks, "usage-monitor-hook")) {
+    const hook = createUsageMonitorHook(config)
+    registry.register("usage-monitor-hook", hook.event, hook.handler, hook.priority)
+  }
+  if (isHookEnabled(disabledHooks, "notification-hook")) {
+    const hook = createNotificationHook(config)
+    registry.register("notification-hook", hook.event, hook.handler, hook.priority)
+  }
+  if (isHookEnabled(disabledHooks, "auto-update-checker-hook")) {
+    const hook = createAutoUpdateCheckerHook(config)
+    registry.register("auto-update-checker-hook", hook.event, hook.handler, hook.priority)
+  }
+  if (isHookEnabled(disabledHooks, "keyword-detector-hook")) {
+    const hook = createKeywordDetectorHook(config)
+    registry.register("keyword-detector-hook", hook.event, hook.handler, hook.priority)
+  }
+  if (isHookEnabled(disabledHooks, "think-mode-hook")) {
+    const hook = createThinkModeHook(config)
+    registry.register("think-mode-hook", hook.event, hook.handler, hook.priority)
+  }
 
-  registry.register(
-    "session-recovery-hook",
-    sessionRecovery.event,
-    sessionRecovery.handler,
-    sessionRecovery.priority,
-  )
-  registry.register(
-    "usage-monitor-hook",
-    usageMonitor.event,
-    usageMonitor.handler,
-    usageMonitor.priority,
-  )
-  registry.register(
-    "notification-hook",
-    notification.event,
-    notification.handler,
-    notification.priority,
-  )
-  registry.register(
-    "auto-update-checker-hook",
-    autoUpdateChecker.event,
-    autoUpdateChecker.handler,
-    autoUpdateChecker.priority,
-  )
-  registry.register(
-    "keyword-detector-hook",
-    keywordDetector.event,
-    keywordDetector.handler,
-    keywordDetector.priority,
-  )
-  registry.register(
-    "think-mode-hook",
-    thinkMode.event,
-    thinkMode.handler,
-    thinkMode.priority,
-  )
+  if (isHookEnabled(disabledHooks, "file-change-checker-hook")) {
+    const hook = createFileChangeCheckerHook(config)
+    registry.register("file-change-checker-hook", hook.event, hook.handler, hook.priority)
+  }
+  if (isHookEnabled(disabledHooks, "todo-list-watcher-hook")) {
+    const hook = createTodoListWatcherHook(config)
+    registry.register("todo-list-watcher-hook", hook.event, hook.handler, hook.priority)
+  }
+  if (isHookEnabled(disabledHooks, "command-watcher-hook")) {
+    const hook = createCommandWatcherHook(config)
+    registry.register("command-watcher-hook", hook.event, hook.handler, hook.priority)
+  }
+  if (isHookEnabled(disabledHooks, "mcp-tool-watcher-hook")) {
+    const hook = createMcpToolWatcherHook(config)
+    registry.register("mcp-tool-watcher-hook", hook.event, hook.handler, hook.priority)
+  }
+
+  if (isHookEnabled(disabledHooks, "stop-guard")) {
+    createStopGuardHook(config, workingDirectory, registry)
+  }
+  if (isHookEnabled(disabledHooks, "empty-response-detector")) {
+    createEmptyResponseDetectorHook(config, workingDirectory, registry)
+  }
+  if (isHookEnabled(disabledHooks, "background-completed")) {
+    createBackgroundCompletedHook(config, workingDirectory, registry)
+  }
+  if (isHookEnabled(disabledHooks, "boulder")) {
+    createBoulderHook(config, workingDirectory, registry)
+  }
+  if (isHookEnabled(disabledHooks, "ralph-loop")) {
+    createRalphLoopHook(config, workingDirectory, registry)
+  }
+
+  if (isHookEnabled(disabledHooks, "category-skill-reminder")) {
+    createCategorySkillReminderHook(config, registry)
+  }
+  if (isHookEnabled(disabledHooks, "auto-slash-command")) {
+    createAutoSlashCommandHook(config, registry)
+  }
 }

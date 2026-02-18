@@ -1,32 +1,30 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js"
-import { z } from "zod/v4"
 import type { OhMyCodexConfig } from "../config/schema/oh-my-codex-config"
+import { SessionStore } from "../features/session-store"
+import { ThreadPool } from "../orchestrator/thread-pool"
+import type { McpToolContext } from "./types"
+import { registerLspTools } from "./tool-schemas/lsp-tools"
+import { registerSearchTools } from "./tool-schemas/search-tools"
+import { registerSessionTools } from "./tool-schemas/session-tools"
+import { registerUtilityTools } from "./tool-schemas/utility-tools"
 
 export function registerTools(
   server: McpServer,
   config: OhMyCodexConfig,
-  _workingDirectory: string,
+  workingDirectory: string,
 ): void {
-  const disabledTools = new Set(config.disabled_tools ?? [])
-
-  if (!disabledTools.has("mcp_ping")) {
-    server.registerTool(
-      "mcp_ping",
-      {
-        title: "MCP Ping",
-        description: "Connectivity scaffold tool for MCP server setup",
-        inputSchema: z.object({
-          message: z.string().optional(),
-        }),
-      },
-      async ({ message }) => ({
-        content: [
-          {
-            type: "text",
-            text: message ?? "pong",
-          },
-        ],
-      }),
-    )
+  const context: McpToolContext = {
+    workingDirectory,
+    config,
+    disabledTools: new Set(config.disabled_tools ?? []),
+    sessionStore: new SessionStore(workingDirectory),
+    threadPool: new ThreadPool({
+      maxConcurrent: config.background_task?.max_concurrent,
+    }),
   }
+
+  registerLspTools(server, context)
+  registerSearchTools(server, context)
+  registerSessionTools(server, context)
+  registerUtilityTools(server, context)
 }
