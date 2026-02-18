@@ -1,6 +1,1 @@
-import { beforeEach } from "bun:test"
-import { _resetForTesting } from "./src/features/claude-code-session-state/state"
-
-beforeEach(() => {
-  _resetForTesting()
-})
+// Global test setup — runs before each test file via bunfig.toml preload

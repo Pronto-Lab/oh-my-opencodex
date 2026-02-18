@@ -1,5 +1,4 @@
 import type { HookRegistry } from "../event-hooks/hook-registry"
-import { log } from "../shared/logger"
 import type { EventPayload, ThreadItem, TokenUsage } from "./types"
 
 type StreamedTurn = { events: AsyncGenerator<unknown> }
@@ -120,7 +119,6 @@ export class EventLoop {
           usage: toUsage(event.usage),
         }
         await this.hooks.emit("turn:completed", payload)
-        await this.checkContinuation(payload)
         return
       }
 
@@ -183,13 +181,4 @@ export class EventLoop {
     }
   }
 
-  private async checkContinuation(
-    payload: EventPayload["turn:completed"],
-  ): Promise<void> {
-    try {
-      await this.hooks.checkContinuation(payload)
-    } catch (error) {
-      log("Failed to check continuation", error)
-    }
-  }
 }
