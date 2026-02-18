@@ -67,13 +67,27 @@ export function createCliProgram(): Command {
       await runMcpServerCommand({ dir: globals.dir })
     })
 
-  program.command("install").description("Run setup wizard").action(() => {
-    console.log(pc.yellow("Install wizard is not implemented yet."))
-  })
+  addGlobalOptions(program.command("install"))
+    .description("Run setup wizard")
+    .action(async (options: CliGlobalOptions) => {
+      const globals = resolveGlobalOptions(options)
+      const { runInstallWizard } = await import("./install")
+      const exitCode = await runInstallWizard(globals.dir)
+      if (exitCode !== 0) {
+        process.exitCode = exitCode
+      }
+    })
 
-  program.command("doctor").description("Run health checks").action(() => {
-    console.log(pc.yellow("Doctor checks are not implemented yet."))
-  })
+  addGlobalOptions(program.command("doctor"))
+    .description("Run health checks")
+    .action(async (options: CliGlobalOptions) => {
+      const globals = resolveGlobalOptions(options)
+      const { runDoctor } = await import("./doctor")
+      const exitCode = runDoctor(globals.dir)
+      if (exitCode !== 0) {
+        process.exitCode = exitCode
+      }
+    })
 
   addGlobalOptions(program.command("migrate"))
     .description("Migrate legacy oh-my-opencodex config")
