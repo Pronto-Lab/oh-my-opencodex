@@ -1,5 +1,6 @@
 import type { OhMyOpenCodexConfig } from "./schema/oh-my-opencodex-config"
 import { toToml } from "../shared/toml-writer"
+import { generateDeveloperInstructions } from "../instructions/codex-developer-instructions"
 
 const WEBSEARCH_URL = "https://mcp.exa.ai"
 const CONTEXT7_URL = "https://mcp.context7.com/mcp"
@@ -14,6 +15,14 @@ export function generateCodexConfig(
   sections.push(
     toToml({
       model: config.agents?.sisyphus?.model ?? "gpt-5.3-codex",
+      model_reasoning_effort: config.agents?.sisyphus?.reasoning_effort ?? "high",
+    }),
+  )
+
+  const devInstructions = generateDeveloperInstructions(config)
+  sections.push(
+    toToml({
+      developer_instructions: devInstructions,
     }),
   )
 

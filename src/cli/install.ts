@@ -3,11 +3,14 @@ import * as path from "node:path"
 import * as p from "@clack/prompts"
 import color from "picocolors"
 import { generateCodexConfig } from "../config/codex-config-writer"
+import { generateAgentsMdContent } from "../instructions/codex-agents-md-writer"
+import { generateRulesFiles } from "../instructions/rules-generator"
 import type { OhMyOpenCodexConfig } from "../config/schema"
 
 const CODEX_DIR = ".codex"
 const OMO_CONFIG_FILE = "oh-my-opencodex.jsonc"
 const CODEX_CONFIG_FILE = "config.toml"
+const AGENTS_MD_FILE = "AGENTS.md"
 
 export async function runInstallWizard(workingDirectory: string = process.cwd()): Promise<number> {
   if (!process.stdin.isTTY || !process.stdout.isTTY) {
@@ -51,12 +54,22 @@ export async function runInstallWizard(workingDirectory: string = process.cwd())
   const toml = generateCodexConfig(defaultConfig, workingDirectory)
   fs.writeFileSync(codexConfigPath, toml, "utf-8")
 
+  const agentsMdPath = path.join(codexDirectory, AGENTS_MD_FILE)
+  const agentsMdContent = generateAgentsMdContent(defaultConfig)
+  fs.writeFileSync(agentsMdPath, agentsMdContent, "utf-8")
+
+  await generateRulesFiles(defaultConfig, workingDirectory)
+
   p.outro(
     [
       color.green("Setup complete."),
       `Generated ${color.cyan(path.relative(workingDirectory, omoConfigPath))}`,
       `Generated ${color.cyan(path.relative(workingDirectory, codexConfigPath))}`,
+      `Generated ${color.cyan(path.relative(workingDirectory, agentsMdPath))}`,
+      `Generated ${color.cyan(".codex/rules/")}`,
       `Created ${color.cyan(path.relative(workingDirectory, skillsDirectory))}`,
+      "",
+      "Codex will now use Sisyphus agent prompt + oh-my-opencodex MCP tools.",
       "Run 'codex' to start",
     ].join("\n"),
   )
