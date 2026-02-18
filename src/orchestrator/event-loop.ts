@@ -19,14 +19,11 @@ function toUsage(value: unknown): TokenUsage | null {
   const input = value.input_tokens
   const output = value.output_tokens
   const total = value.total_tokens
-  if (
-    typeof input !== "number" ||
-    typeof output !== "number" ||
-    typeof total !== "number"
-  ) {
+  if (typeof input !== "number" || typeof output !== "number") {
     return null
   }
-  return { input_tokens: input, output_tokens: output, total_tokens: total }
+  const cached = typeof value.cached_input_tokens === "number" ? value.cached_input_tokens : undefined
+  return { input_tokens: input, output_tokens: output, cached_input_tokens: cached }
 }
 
 function toThreadItem(value: unknown): ThreadItem | null {

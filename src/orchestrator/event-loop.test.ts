@@ -76,7 +76,7 @@ describe("EventLoop", () => {
     const turnCompleted = emitted.find((e) => e.event === "turn:completed")
     expect(turnCompleted).toBeDefined()
     expect(turnCompleted?.payload).toEqual({
-      usage: { input_tokens: 12, output_tokens: 8, total_tokens: 20 },
+      usage: { input_tokens: 12, output_tokens: 8, cached_input_tokens: undefined },
     })
   })
 

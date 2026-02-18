@@ -49,6 +49,7 @@
     "@clack/prompts": "^0.11.0",
     "@code-yeongyu/comment-checker": "^0.6.1",
     "@modelcontextprotocol/sdk": "^1.25.1",
+    "@openai/codex-sdk": "^0.104.0",
     "commander": "^14.0.2",
     "detect-libc": "^2.0.0",
     "js-yaml": "^4.1.1",

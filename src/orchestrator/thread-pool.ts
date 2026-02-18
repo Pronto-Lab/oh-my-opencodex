@@ -158,10 +158,16 @@ export class ThreadPool {
     }
   }
   private async runTask(prompt: string, model?: string): Promise<string> {
-    await Promise.resolve()
-    const resolvedModel = model ?? this.codexWrapper?.resolveModel()
-    log("ThreadPool runTask (stub)", { model: resolvedModel, promptLength: prompt.length })
-    return `Completed background task (${resolvedModel ?? "default"})`
+    if (!this.codexWrapper) {
+      throw new Error("CodexWrapper not set on ThreadPool")
+    }
+
+    const resolvedModel = model ?? this.codexWrapper.resolveModel()
+    log("ThreadPool runTask", { model: resolvedModel, promptLength: prompt.length })
+
+    const thread = this.codexWrapper.createThread({ model: resolvedModel })
+    const turn = await thread.run(prompt)
+    return turn.finalResponse
   }
   private async emitCompleted(taskId: string, result: string | undefined): Promise<void> {
     if (!this.hookRegistry) {

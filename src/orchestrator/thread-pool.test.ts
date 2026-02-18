@@ -14,6 +14,10 @@ async function waitFor(predicate: () => boolean, timeoutMs = 2000): Promise<void
 describe("ThreadPool", () => {
   it("spawns, completes, and lists background tasks", async () => {
     const pool = new ThreadPool({ maxConcurrent: 2 })
+    const internals = pool as unknown as {
+      runTask: (prompt: string, model?: string) => Promise<string>
+    }
+    internals.runTask = async (prompt: string) => `done:${prompt}`
 
     const firstId = pool.spawn({ prompt: "first", title: "Task 1" })
     const secondId = pool.spawn({ prompt: "second", title: "Task 2" })
@@ -25,7 +29,7 @@ describe("ThreadPool", () => {
 
     const tasks = pool.listTasks()
     expect(tasks.map((task) => task.id).sort()).toEqual([firstId, secondId].sort())
-    expect(tasks.every((task) => task.result?.includes("Completed background task") ?? false)).toBe(true)
+    expect(tasks.every((task) => task.status === "completed")).toBe(true)
   })
 
   it("cancels queued tasks before execution", async () => {

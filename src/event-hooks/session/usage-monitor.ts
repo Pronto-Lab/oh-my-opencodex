@@ -7,7 +7,6 @@ const WARNING_THRESHOLD_TOKENS = 200_000
 const usageState = {
   input_tokens: 0,
   output_tokens: 0,
-  total_tokens: 0,
   warned: false,
 }
 
@@ -24,12 +23,12 @@ export function createUsageMonitorHook(
 
       usageState.input_tokens += usage.input_tokens
       usageState.output_tokens += usage.output_tokens
-      usageState.total_tokens += usage.total_tokens
+      const total = usageState.input_tokens + usageState.output_tokens
 
-      if (usageState.total_tokens >= WARNING_THRESHOLD_TOKENS && !usageState.warned) {
+      if (total >= WARNING_THRESHOLD_TOKENS && !usageState.warned) {
         usageState.warned = true
         log("[usage-monitor] high cumulative token usage", {
-          total_tokens: usageState.total_tokens,
+          total: total,
           threshold: WARNING_THRESHOLD_TOKENS,
         })
       }

@@ -6,7 +6,6 @@ const cumulativeUsage = {
   turns: 0,
   input_tokens: 0,
   output_tokens: 0,
-  total_tokens: 0,
 }
 
 export function createTurnCompletedHook(
@@ -27,7 +26,6 @@ export function createTurnCompletedHook(
 
       cumulativeUsage.input_tokens += usage.input_tokens
       cumulativeUsage.output_tokens += usage.output_tokens
-      cumulativeUsage.total_tokens += usage.total_tokens
 
       log("[turn-completed] turn completed", {
         turn: cumulativeUsage.turns,
@@ -35,7 +33,6 @@ export function createTurnCompletedHook(
         cumulative: {
           input_tokens: cumulativeUsage.input_tokens,
           output_tokens: cumulativeUsage.output_tokens,
-          total_tokens: cumulativeUsage.total_tokens,
         },
       })
     },

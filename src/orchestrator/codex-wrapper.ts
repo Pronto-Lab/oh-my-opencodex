@@ -1,39 +1,15 @@
+import {
+  Codex,
+  type CodexOptions,
+  type RunStreamedResult,
+  type Thread,
+  type ThreadOptions,
+} from "@openai/codex-sdk"
 import type { OhMyCodexConfig } from "../config/schema/oh-my-codex-config"
 import { log } from "../shared/logger"
 
-type CodexOptions = {
-  config?: Record<string, unknown>
-  env?: Record<string, string>
-}
-
-type ThreadOptions = {
-  model?: string
-  sandboxMode?: string
-  workingDirectory?: string
-  modelReasoningEffort?: string
-  networkAccessEnabled?: boolean
-  webSearchMode?: string
-  approvalPolicy?: string
-}
-
-type StreamedTurn = {
-  events: AsyncGenerator<unknown>
-  finalResponse?: string
-}
-
-type Thread = {
-  id: string | null
-  run(
-    input: string,
-    options?: { signal?: AbortSignal },
-  ): Promise<{ items: unknown[]; finalResponse: string; usage: unknown }>
-  runStreamed(input: string, options?: { signal?: AbortSignal }): Promise<StreamedTurn>
-}
-
-type Codex = {
-  startThread(options: ThreadOptions): Thread
-  resumeThread(id: string, options: ThreadOptions): Thread
-}
+export type StreamedTurn = RunStreamedResult
+export type { Thread }
 
 export type CodexWrapperOptions = {
   config: OhMyCodexConfig
@@ -52,7 +28,7 @@ const DEFAULT_MODEL_MAP: Record<string, string> = {
 }
 
 export class CodexWrapper {
-  private codex: Codex | null = null
+  private codex: Codex
   private primaryThread: Thread | null = null
   private config: OhMyCodexConfig
   private agentName: string
@@ -63,10 +39,14 @@ export class CodexWrapper {
     this.agentName = options.agentName
     this.workingDirectory = options.workingDirectory
 
-    void ({} as CodexOptions)
+    const codexOptions: CodexOptions = {
+      env: this.buildEnv(),
+    }
+    this.codex = new Codex(codexOptions)
 
-    log("CodexWrapper created", {
+    log("CodexWrapper initialized", {
       agent: options.agentName,
+      model: this.resolveModel(),
       workDir: options.workingDirectory,
     })
   }
@@ -85,10 +65,6 @@ export class CodexWrapper {
   }
 
   async resumeSession(threadId: string, input: string): Promise<StreamedTurn> {
-    if (!this.codex) {
-      throw new Error("Codex SDK not initialized")
-    }
-
     this.primaryThread = this.codex.resumeThread(threadId, this.buildThreadOptions())
     return this.primaryThread.runStreamed(input)
   }
@@ -102,15 +78,14 @@ export class CodexWrapper {
     return this.config.agents?.[name]?.model ?? DEFAULT_MODEL_MAP[name] ?? "gpt-5.3-codex"
   }
 
-  private getOrCreateThread(): Thread {
-    if (!this.codex) {
-      throw new Error("Codex SDK not initialized")
-    }
+  createThread(overrides?: Partial<ThreadOptions>): Thread {
+    return this.codex.startThread({ ...this.buildThreadOptions(), ...overrides })
+  }
 
+  private getOrCreateThread(): Thread {
     if (!this.primaryThread) {
       this.primaryThread = this.codex.startThread(this.buildThreadOptions())
     }
-
     return this.primaryThread
   }
 
