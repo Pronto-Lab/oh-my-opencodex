@@ -1,10 +1,10 @@
-import type { OhMyCodexConfig } from "../config/schema/oh-my-codex-config"
+import type { OhMyOpenCodexConfig } from "../config/schema/oh-my-opencodex-config"
 import type { SessionStore } from "../features/session-store"
 import type { ThreadPool } from "../orchestrator/thread-pool"
 
 export type McpToolContext = {
   workingDirectory: string
-  config: OhMyCodexConfig
+  config: OhMyOpenCodexConfig
   disabledTools: Set<string>
   sessionStore: SessionStore
   threadPool: ThreadPool

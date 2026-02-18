@@ -1,4 +1,4 @@
-import type { OhMyCodexConfig } from "../config/schema/oh-my-codex-config"
+import type { OhMyOpenCodexConfig } from "../config/schema/oh-my-opencodex-config"
 
 type ToolSpec = { name: string; description: string }
 
@@ -46,7 +46,7 @@ function table(headers: string[], rows: string[][]): string {
   return [header, sep, body].filter(Boolean).join("\n")
 }
 
-export function buildToolGuidanceSection(config: OhMyCodexConfig): string {
+export function buildToolGuidanceSection(config: OhMyOpenCodexConfig): string {
   const disabled = new Set(config.disabled_tools ?? [])
   const rows = MCP_TOOL_SPECS.map((tool) => [
     `\`${tool.name}\``,
@@ -62,7 +62,7 @@ export function buildToolGuidanceSection(config: OhMyCodexConfig): string {
   ].join("\n")
 }
 
-export function buildDelegationSection(config: OhMyCodexConfig): string {
+export function buildDelegationSection(config: OhMyOpenCodexConfig): string {
   const agentRows = ["explore", "librarian", "oracle"].map((agent) => {
     const model = config.agents?.[agent]?.model ?? DEFAULT_AGENT_MODELS[agent]
     return [`\`${agent}\``, `\`${model}\``]
@@ -78,7 +78,7 @@ export function buildDelegationSection(config: OhMyCodexConfig): string {
   ].join("\n")
 }
 
-export function buildCategorySection(config: OhMyCodexConfig): string {
+export function buildCategorySection(config: OhMyOpenCodexConfig): string {
   const merged = { ...DEFAULT_CATEGORY_MODELS }
   for (const [name, category] of Object.entries(config.categories ?? {})) {
     merged[name] = category.model

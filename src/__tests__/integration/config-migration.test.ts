@@ -66,11 +66,11 @@ describe("integration/config-migration", () => {
     const toml = generateCodexConfig(loaded, workingDirectory)
 
     expect(toml.includes("[permissions]")).toBe(true)
-    expect(toml.includes("[mcp_servers.oh-my-codex]")).toBe(true)
-    expect(toml.includes("command = \"oh-my-codex\"")).toBe(true)
+    expect(toml.includes("[mcp_servers.oh-my-opencodex]")).toBe(true)
+    expect(toml.includes("command = \"oh-my-opencodex\"")).toBe(true)
     expect(toml.includes("sandbox_mode")).toBe(true)
 
-    const writtenConfig = await readFile(path.join(workingDirectory, ".codex", "oh-my-codex.jsonc"), "utf-8")
+    const writtenConfig = await readFile(path.join(workingDirectory, ".codex", "oh-my-opencodex.jsonc"), "utf-8")
     expect(writtenConfig.includes("gpt-5.3-codex")).toBe(true)
   })
 })

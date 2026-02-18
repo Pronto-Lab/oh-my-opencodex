@@ -1,5 +1,5 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js"
-import type { OhMyCodexConfig } from "../config/schema/oh-my-codex-config"
+import type { OhMyOpenCodexConfig } from "../config/schema/oh-my-opencodex-config"
 import { SessionStore } from "../features/session-store"
 import { ThreadPool } from "../orchestrator/thread-pool"
 import type { McpToolContext } from "./types"
@@ -10,7 +10,7 @@ import { registerUtilityTools } from "./tool-schemas/utility-tools"
 
 export function registerTools(
   server: McpServer,
-  config: OhMyCodexConfig,
+  config: OhMyOpenCodexConfig,
   workingDirectory: string,
 ): void {
   const context: McpToolContext = {

@@ -1,4 +1,4 @@
-import type { OhMyCodexConfig } from "../../config/schema/oh-my-codex-config"
+import type { OhMyOpenCodexConfig } from "../../config/schema/oh-my-opencodex-config"
 import type { HookRegistry } from "../hook-registry"
 import {
   clearBoulderState,
@@ -30,7 +30,7 @@ function getTodoPreview(incompleteTodos: IncompleteTodo[]): string {
 }
 
 export function createBoulderHook(
-  config: OhMyCodexConfig,
+  config: OhMyOpenCodexConfig,
   workingDir: string,
   registry: HookRegistry,
   getIncompleteTodos: () => IncompleteTodo[] = () =>

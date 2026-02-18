@@ -2,7 +2,7 @@ import * as fs from "fs"
 import * as os from "os"
 import * as path from "path"
 
-const logFile = path.join(os.tmpdir(), "oh-my-codex.log")
+const logFile = path.join(os.tmpdir(), "oh-my-opencodex.log")
 
 export function log(message: string, data?: unknown): void {
   try {

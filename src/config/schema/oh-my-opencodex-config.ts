@@ -7,7 +7,7 @@ import { CommentCheckerSchema } from "./comment-checker"
 import { RalphLoopSchema } from "./ralph-loop"
 import { ExperimentalSchema } from "./experimental"
 
-export const OhMyCodexConfigSchema = z.object({
+export const OhMyOpenCodexConfigSchema = z.object({
   $schema: z.string().optional(),
 
   default_agent: z.enum(["sisyphus", "hephaestus", "atlas"]).optional(),
@@ -52,4 +52,4 @@ export const OhMyCodexConfigSchema = z.object({
   _migrations: z.array(z.string()).optional(),
 })
 
-export type OhMyCodexConfig = z.infer<typeof OhMyCodexConfigSchema>
+export type OhMyOpenCodexConfig = z.infer<typeof OhMyOpenCodexConfigSchema>

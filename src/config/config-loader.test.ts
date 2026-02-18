@@ -6,7 +6,7 @@ import path from "node:path"
 type ConfigLoaderModule = typeof import("./config-loader")
 
 async function withTempDirs(): Promise<{ home: string; working: string }> {
-  const root = await mkdtemp(path.join(os.tmpdir(), "oh-my-codex-config-loader-"))
+  const root = await mkdtemp(path.join(os.tmpdir(), "oh-my-opencodex-config-loader-"))
   return {
     home: path.join(root, "home"),
     working: path.join(root, "workspace"),
@@ -38,7 +38,7 @@ describe("loadConfig", () => {
       "web_search_mode": "live",
       "disabled_hooks": ["think-mode-hook",],
     }`
-    await writeFile(path.join(working, ".codex", "oh-my-codex.jsonc"), configBody, "utf-8")
+    await writeFile(path.join(working, ".codex", "oh-my-opencodex.jsonc"), configBody, "utf-8")
 
     const { loadConfig } = await importConfigLoader(home)
     const result = loadConfig(working)
@@ -53,7 +53,7 @@ describe("loadConfig", () => {
     await mkdir(path.join(working, ".codex"), { recursive: true })
 
     await writeFile(
-      path.join(home, ".config", "codex", "oh-my-codex.jsonc"),
+      path.join(home, ".config", "codex", "oh-my-opencodex.jsonc"),
       JSON.stringify(
         {
           web_search_mode: "cached",
@@ -65,7 +65,7 @@ describe("loadConfig", () => {
       "utf-8",
     )
     await writeFile(
-      path.join(working, ".codex", "oh-my-codex.jsonc"),
+      path.join(working, ".codex", "oh-my-opencodex.jsonc"),
       JSON.stringify(
         {
           web_search_mode: "live",
@@ -90,7 +90,7 @@ describe("loadConfig", () => {
     await mkdir(path.join(working, ".codex"), { recursive: true })
 
     await writeFile(
-      path.join(working, ".codex", "oh-my-codex.jsonc"),
+      path.join(working, ".codex", "oh-my-opencodex.jsonc"),
       JSON.stringify({ approval_policy: "invalid-policy" }, null, 2),
       "utf-8",
     )

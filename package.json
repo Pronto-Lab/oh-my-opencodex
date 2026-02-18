@@ -1,12 +1,12 @@
 {
-  "name": "oh-my-codex",
+  "name": "oh-my-opencodex",
   "version": "1.0.0-alpha.0",
   "description": "The Best AI Agent Harness - Batteries-Included Codex Enhancement with Multi-Agent Orchestration, Parallel Background Threads, and Crafted LSP/AST Tools",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
   "bin": {
-    "oh-my-codex": "./bin/oh-my-codex.js"
+    "oh-my-opencodex": "./bin/oh-my-opencodex.js"
   },
   "files": [
     "dist",

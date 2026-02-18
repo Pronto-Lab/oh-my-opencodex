@@ -3,10 +3,10 @@ import * as path from "node:path"
 import * as p from "@clack/prompts"
 import color from "picocolors"
 import { generateCodexConfig } from "../config/codex-config-writer"
-import type { OhMyCodexConfig } from "../config/schema"
+import type { OhMyOpenCodexConfig } from "../config/schema"
 
 const CODEX_DIR = ".codex"
-const OMO_CONFIG_FILE = "oh-my-codex.jsonc"
+const OMO_CONFIG_FILE = "oh-my-opencodex.jsonc"
 const CODEX_CONFIG_FILE = "config.toml"
 
 export async function runInstallWizard(workingDirectory: string = process.cwd()): Promise<number> {
@@ -15,7 +15,7 @@ export async function runInstallWizard(workingDirectory: string = process.cwd())
     return 1
   }
 
-  p.intro("Welcome to oh-my-codex setup")
+  p.intro("Welcome to oh-my-opencodex setup")
 
   const existingApiKey = process.env.OPENAI_API_KEY
   const apiKey = existingApiKey || await promptApiKey()
@@ -64,7 +64,7 @@ export async function runInstallWizard(workingDirectory: string = process.cwd())
   return 0
 }
 
-function createDefaultConfig(): OhMyCodexConfig {
+function createDefaultConfig(): OhMyOpenCodexConfig {
   return {
     approval_policy: "on-request",
     sandbox_mode: "workspace-write",
@@ -134,17 +134,17 @@ function escapeDoubleQuotes(value: string): string {
   return value.replaceAll('"', '\\"')
 }
 
-function formatJsonc(config: OhMyCodexConfig): string {
+function formatJsonc(config: OhMyOpenCodexConfig): string {
   const banner = [
     "{",
-    "  // oh-my-codex project configuration",
+    "  // oh-my-opencodex project configuration",
     ...toIndentedJsonLines(config),
     "}",
   ]
   return banner.join("\n")
 }
 
-function toIndentedJsonLines(config: OhMyCodexConfig): string[] {
+function toIndentedJsonLines(config: OhMyOpenCodexConfig): string[] {
   const json = JSON.stringify(config, null, 2)
   const lines = json.split("\n")
   return lines.slice(1, -1).map((line) => `  ${line}`)

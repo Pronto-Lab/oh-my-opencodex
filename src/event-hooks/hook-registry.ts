@@ -2,10 +2,10 @@ import { log } from "../shared/logger"
 import type {
   ContinuationResult,
   EventPayload,
-  OhMyCodexEvent,
+  OhMyOpenCodexEvent,
 } from "../orchestrator/types"
 
-type HookHandler<E extends OhMyCodexEvent> = (
+type HookHandler<E extends OhMyOpenCodexEvent> = (
   payload: EventPayload[E],
 ) => void | Promise<void>
 
@@ -14,7 +14,7 @@ type ContinuationHandler = (
 ) => ContinuationResult | Promise<ContinuationResult>
 
 type RegisteredHook = {
-  event: OhMyCodexEvent
+  event: OhMyOpenCodexEvent
   name: string
   priority: number
   handler: HookHandler<any>
@@ -27,7 +27,7 @@ type RegisteredContinuationHook = {
 }
 
 export class HookRegistry {
-  private hooks = new Map<OhMyCodexEvent, RegisteredHook[]>()
+  private hooks = new Map<OhMyOpenCodexEvent, RegisteredHook[]>()
   private continuationHooks: RegisteredContinuationHook[] = []
   private disabledHooks: Set<string>
 
@@ -35,7 +35,7 @@ export class HookRegistry {
     this.disabledHooks = new Set(disabledHooks ?? [])
   }
 
-  register<E extends OhMyCodexEvent>(
+  register<E extends OhMyOpenCodexEvent>(
     name: string,
     event: E,
     handler: HookHandler<E>,
@@ -64,7 +64,7 @@ export class HookRegistry {
     this.continuationHooks.sort((a, b) => a.priority - b.priority)
   }
 
-  async emit<E extends OhMyCodexEvent>(
+  async emit<E extends OhMyOpenCodexEvent>(
     event: E,
     payload: EventPayload[E],
   ): Promise<void> {

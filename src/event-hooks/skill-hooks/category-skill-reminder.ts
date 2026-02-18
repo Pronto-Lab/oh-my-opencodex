@@ -1,5 +1,5 @@
 import type { HookRegistry } from "../hook-registry"
-import type { OhMyCodexConfig } from "../../config/schema/oh-my-codex-config"
+import type { OhMyOpenCodexConfig } from "../../config/schema/oh-my-opencodex-config"
 
 interface SkillInfo {
   name: string
@@ -40,7 +40,7 @@ function buildReminderMessage(builtinSkills: SkillInfo[], customSkills: SkillInf
 }
 
 export function createCategorySkillReminderHook(
-  config: OhMyCodexConfig,
+  config: OhMyOpenCodexConfig,
   registry: HookRegistry,
 ): void {
   const builtinSkills: SkillInfo[] = [

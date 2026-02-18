@@ -27,7 +27,7 @@ async function newTempDir(): Promise<string> {
 
 async function writeConfig(workingDirectory: string, body: string): Promise<void> {
   await mkdir(path.join(workingDirectory, ".codex"), { recursive: true })
-  await writeFile(path.join(workingDirectory, ".codex", "oh-my-codex.jsonc"), body, "utf-8")
+  await writeFile(path.join(workingDirectory, ".codex", "oh-my-opencodex.jsonc"), body, "utf-8")
 }
 
 async function* eventStream(events: unknown[]): AsyncGenerator<unknown> {
@@ -61,7 +61,7 @@ describe("integration/full-flow", () => {
     expect(context.wrapper.resolveModel()).toBe("gpt-5.1")
     expect(context.hookRegistry.getRegisteredHooks().length).toBeGreaterThan(0)
     expect(codexToml.includes("[permissions]")).toBe(true)
-    expect(codexToml.includes("[mcp_servers.oh-my-codex]")).toBe(true)
+    expect(codexToml.includes("[mcp_servers.oh-my-opencodex]")).toBe(true)
   })
 
   it("runs event stream and emits hooks in event-loop order", async () => {

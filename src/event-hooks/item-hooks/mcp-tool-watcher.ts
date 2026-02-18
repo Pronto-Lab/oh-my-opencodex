@@ -1,4 +1,4 @@
-import type { OhMyCodexConfig } from "../../config/schema/oh-my-codex-config"
+import type { OhMyOpenCodexConfig } from "../../config/schema/oh-my-opencodex-config"
 import type { EventPayload } from "../../orchestrator/types"
 
 class McpToolWatcher {
@@ -39,7 +39,7 @@ export function getToolUsage(): Record<string, number> {
   return mcpToolWatcher.getToolUsage()
 }
 
-export function createMcpToolWatcherHook(_config?: OhMyCodexConfig): {
+export function createMcpToolWatcherHook(_config?: OhMyOpenCodexConfig): {
   event: "mcp_tool:completed"
   handler: (payload: EventPayload["mcp_tool:completed"]) => void
   priority: number

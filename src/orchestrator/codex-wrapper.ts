@@ -5,14 +5,14 @@ import {
   type Thread,
   type ThreadOptions,
 } from "@openai/codex-sdk"
-import type { OhMyCodexConfig } from "../config/schema/oh-my-codex-config"
+import type { OhMyOpenCodexConfig } from "../config/schema/oh-my-opencodex-config"
 import { log } from "../shared/logger"
 
 export type StreamedTurn = RunStreamedResult
 export type { Thread }
 
 export type CodexWrapperOptions = {
-  config: OhMyCodexConfig
+  config: OhMyOpenCodexConfig
   workingDirectory: string
   agentName: string
   instructions: string
@@ -30,7 +30,7 @@ const DEFAULT_MODEL_MAP: Record<string, string> = {
 export class CodexWrapper {
   private codex: Codex
   private primaryThread: Thread | null = null
-  private config: OhMyCodexConfig
+  private config: OhMyOpenCodexConfig
   private agentName: string
   private workingDirectory: string
 

@@ -31,7 +31,7 @@ export function createCliProgram(): Command {
   const program = addGlobalOptions(new Command())
 
   program
-    .name("oh-my-codex")
+    .name("oh-my-opencodex")
     .description("Oh My Codex CLI")
     .argument("[prompt]", "initial prompt for interactive mode")
     .action(async (prompt: string | undefined, options: CliGlobalOptions) => {

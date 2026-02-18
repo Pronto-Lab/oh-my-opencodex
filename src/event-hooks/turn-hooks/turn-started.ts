@@ -1,4 +1,4 @@
-import type { OhMyCodexConfig } from "../../config/schema/oh-my-codex-config"
+import type { OhMyOpenCodexConfig } from "../../config/schema/oh-my-opencodex-config"
 import { log } from "../../shared/logger"
 import type { HookRegistration } from "../hook-registration"
 
@@ -6,7 +6,7 @@ let turnCounter = 0
 let lastTurnStartedAt = 0
 
 export function createTurnStartedHook(
-  _config: OhMyCodexConfig,
+  _config: OhMyOpenCodexConfig,
 ): HookRegistration<"turn:started"> {
   return {
     event: "turn:started",

@@ -1,4 +1,4 @@
-import type { OhMyCodexConfig } from "../../config/schema/oh-my-codex-config"
+import type { OhMyOpenCodexConfig } from "../../config/schema/oh-my-opencodex-config"
 import type { EventPayload } from "../../orchestrator/types"
 import { executeCommand } from "../../shared/command-executor"
 import { log } from "../../shared/logger"
@@ -50,7 +50,7 @@ function hasViolation(output: string): boolean {
   return violationSignals.some((signal) => normalized.includes(signal))
 }
 
-export function createFileChangeCheckerHook(config?: OhMyCodexConfig): {
+export function createFileChangeCheckerHook(config?: OhMyOpenCodexConfig): {
   event: "file_change:completed"
   handler: (payload: EventPayload["file_change:completed"]) => Promise<void>
   priority: number

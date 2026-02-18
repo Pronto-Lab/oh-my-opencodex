@@ -1,4 +1,4 @@
-import type { OhMyCodexConfig } from "../../config/schema/oh-my-codex-config"
+import type { OhMyOpenCodexConfig } from "../../config/schema/oh-my-opencodex-config"
 import type { EventPayload } from "../../orchestrator/types"
 import type { HookRegistry } from "../hook-registry"
 
@@ -39,7 +39,7 @@ function getAgentMessageText(item: EventPayload["item:completed"]["item"]): stri
 }
 
 export function createEmptyResponseDetectorHook(
-  _config: OhMyCodexConfig,
+  _config: OhMyOpenCodexConfig,
   _workingDir: string,
   registry: HookRegistry,
 ): void {

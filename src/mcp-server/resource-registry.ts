@@ -1,11 +1,11 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js"
-import type { OhMyCodexConfig } from "../config/schema/oh-my-codex-config"
+import type { OhMyOpenCodexConfig } from "../config/schema/oh-my-opencodex-config"
 import * as fs from "fs"
 import * as path from "path"
 
 export function registerResources(
   server: McpServer,
-  _config: OhMyCodexConfig,
+  _config: OhMyOpenCodexConfig,
   workingDirectory: string,
 ): void {
   server.registerResource(

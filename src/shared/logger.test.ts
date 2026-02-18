@@ -7,7 +7,7 @@ describe("logger", () => {
   it("returns a log path in the temp directory", () => {
     const logPath = getLogFilePath()
     expect(logPath.startsWith(os.tmpdir())).toBe(true)
-    expect(logPath.endsWith("oh-my-codex.log")).toBe(true)
+    expect(logPath.endsWith("oh-my-opencodex.log")).toBe(true)
   })
 
   it("appends a formatted log entry to the log file", async () => {

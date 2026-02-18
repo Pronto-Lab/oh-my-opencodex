@@ -25,7 +25,7 @@ describe("generateInstructions", () => {
     const result = generateInstructions("nonexistent", {})
 
     expect(result).toContain("nonexistent")
-    expect(result).toContain("oh-my-codex")
+    expect(result).toContain("oh-my-opencodex")
   })
 
   it("sisyphus includes its own tool guidance and delegation sections", () => {

@@ -1,4 +1,4 @@
-import type { OhMyCodexConfig } from "../../config/schema/oh-my-codex-config"
+import type { OhMyOpenCodexConfig } from "../../config/schema/oh-my-opencodex-config"
 import type { ThreadItem } from "../../orchestrator/types"
 import { log } from "../../shared/logger"
 import type { HookRegistration } from "../hook-registration"
@@ -21,7 +21,7 @@ function extractItemText(item: ThreadItem): string {
   return ""
 }
 
-function ensureReasoningEffort(config: OhMyCodexConfig): void {
+function ensureReasoningEffort(config: OhMyOpenCodexConfig): void {
   const agentName = config.default_agent ?? "sisyphus"
 
   if (config.agents === undefined) {
@@ -47,7 +47,7 @@ function ensureReasoningEffort(config: OhMyCodexConfig): void {
 }
 
 export function createKeywordDetectorHook(
-  config: OhMyCodexConfig,
+  config: OhMyOpenCodexConfig,
 ): HookRegistration<"item:completed"> {
   return {
     event: "item:completed",

@@ -3,7 +3,7 @@ import * as path from "node:path"
 import { execSync } from "node:child_process"
 import color from "picocolors"
 import { parseJsonc } from "../shared/jsonc-parser"
-import { OhMyCodexConfigSchema } from "../config/schema/oh-my-codex-config"
+import { OhMyOpenCodexConfigSchema } from "../config/schema/oh-my-opencodex-config"
 
 type CheckResult = {
   ok: boolean
@@ -70,21 +70,21 @@ function codexTomlCheck(workingDirectory: string): CheckResult {
 }
 
 function omoJsoncCheck(workingDirectory: string): CheckResult {
-  const configPath = path.join(workingDirectory, ".codex/oh-my-codex.jsonc")
+  const configPath = path.join(workingDirectory, ".codex/oh-my-opencodex.jsonc")
   if (!fs.existsSync(configPath)) {
-    return fail(".codex/oh-my-codex.jsonc is missing")
+    return fail(".codex/oh-my-opencodex.jsonc is missing")
   }
 
   try {
     const content = fs.readFileSync(configPath, "utf-8")
     const parsed = parseJsonc<unknown>(content)
-    const result = OhMyCodexConfigSchema.safeParse(parsed)
+    const result = OhMyOpenCodexConfigSchema.safeParse(parsed)
     if (!result.success) {
-      return fail(".codex/oh-my-codex.jsonc exists but failed schema validation")
+      return fail(".codex/oh-my-opencodex.jsonc exists but failed schema validation")
     }
-    return ok(".codex/oh-my-codex.jsonc exists and is valid")
+    return ok(".codex/oh-my-opencodex.jsonc exists and is valid")
   } catch (error) {
-    return fail(`failed reading .codex/oh-my-codex.jsonc: ${toErrorMessage(error)}`)
+    return fail(`failed reading .codex/oh-my-opencodex.jsonc: ${toErrorMessage(error)}`)
   }
 }
 
@@ -109,11 +109,11 @@ function packageVersionCheck(workingDirectory: string): CheckResult {
     const packagePath = path.join(workingDirectory, "package.json")
     const raw = fs.readFileSync(packagePath, "utf-8")
     const parsed = JSON.parse(raw) as { name?: string; version?: string }
-    const name = parsed.name ?? "oh-my-codex"
+    const name = parsed.name ?? "oh-my-opencodex"
     const version = parsed.version ?? "unknown"
     return ok(`${name} version ${version}`)
   } catch (error) {
-    return warn(`could not read oh-my-codex version: ${toErrorMessage(error)}`)
+    return warn(`could not read oh-my-opencodex version: ${toErrorMessage(error)}`)
   }
 }
 
@@ -135,7 +135,7 @@ function looksLikeValidCodexToml(content: string): boolean {
 
   const hasModel = /(^|\n)model\s*=\s*".+"/.test(content)
   const hasPermissions = /\[permissions\]/.test(content)
-  const hasOmoMcp = /\[mcp_servers\.oh-my-codex\]/.test(content)
+  const hasOmoMcp = /\[mcp_servers\.oh-my-opencodex\]/.test(content)
   return hasModel && hasPermissions && hasOmoMcp
 }
 

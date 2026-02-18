@@ -1,5 +1,5 @@
 import { readFile } from "node:fs/promises"
-import type { OhMyCodexConfig } from "../../config/schema/oh-my-codex-config"
+import type { OhMyOpenCodexConfig } from "../../config/schema/oh-my-opencodex-config"
 import { log } from "../../shared/logger"
 import type { HookRegistration } from "../hook-registration"
 
@@ -40,7 +40,7 @@ async function getLocalVersion(): Promise<string | null> {
 }
 
 export function createAutoUpdateCheckerHook(
-  _config: OhMyCodexConfig,
+  _config: OhMyOpenCodexConfig,
 ): HookRegistration<"thread:started"> {
   return {
     event: "thread:started",
@@ -57,7 +57,7 @@ export function createAutoUpdateCheckerHook(
       }
 
       try {
-        const response = await fetch("https://registry.npmjs.org/oh-my-codex/latest")
+        const response = await fetch("https://registry.npmjs.org/oh-my-opencodex/latest")
         if (!response.ok) {
           return
         }

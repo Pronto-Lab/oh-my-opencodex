@@ -18,7 +18,7 @@ export type CodexItemType =
   | "todo_list"
   | "error"
 
-export type OhMyCodexEvent =
+export type OhMyOpenCodexEvent =
   | "thread:started"
   | "turn:started"
   | "turn:completed"

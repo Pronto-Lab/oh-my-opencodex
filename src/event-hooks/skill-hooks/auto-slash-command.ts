@@ -1,5 +1,5 @@
 import type { HookRegistry } from "../hook-registry"
-import type { OhMyCodexConfig } from "../../config/schema/oh-my-codex-config"
+import type { OhMyOpenCodexConfig } from "../../config/schema/oh-my-opencodex-config"
 
 const SLASH_COMMAND_PATTERN = /^\/([a-z0-9\-]+)(?:\s+(.*))?$/i
 const SUPPORTED_COMMANDS = new Set([
@@ -50,7 +50,7 @@ function isSlashCommandDetected(text: string): boolean {
 }
 
 export function createAutoSlashCommandHook(
-  config: OhMyCodexConfig,
+  config: OhMyOpenCodexConfig,
   registry: HookRegistry,
 ): void {
   const processedCommands = new Set<string>()

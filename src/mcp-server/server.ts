@@ -1,16 +1,16 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js"
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
-import type { OhMyCodexConfig } from "../config/schema/oh-my-codex-config"
+import type { OhMyOpenCodexConfig } from "../config/schema/oh-my-opencodex-config"
 import { registerPrompts } from "./prompt-registry"
 import { registerResources } from "./resource-registry"
 import { registerTools } from "./tool-registry"
 
 export function createMcpServer(
-  config: OhMyCodexConfig,
+  config: OhMyOpenCodexConfig,
   workingDirectory: string,
 ): McpServer {
   const server = new McpServer({
-    name: "oh-my-codex",
+    name: "oh-my-opencodex",
     version: "1.0.0",
   })
 
@@ -22,7 +22,7 @@ export function createMcpServer(
 }
 
 export async function startMcpServer(
-  config: OhMyCodexConfig,
+  config: OhMyOpenCodexConfig,
   workingDirectory: string,
 ): Promise<void> {
   const server = createMcpServer(config, workingDirectory)

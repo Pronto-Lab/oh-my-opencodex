@@ -32,7 +32,7 @@ function cleanup(dir: string): void {
 describe("E2E Pipeline", () => {
   it("loads config from workspace", () => {
     const dir = createWorkspace({
-      ".codex/oh-my-codex.jsonc": JSON.stringify({
+      ".codex/oh-my-opencodex.jsonc": JSON.stringify({
         agents: { sisyphus: { model: "gpt-5.3-codex" } },
         sandbox_mode: "workspace-write",
       }),
@@ -49,7 +49,7 @@ describe("E2E Pipeline", () => {
 
   it("generates valid codex config.toml from loaded config", () => {
     const dir = createWorkspace({
-      ".codex/oh-my-codex.jsonc": JSON.stringify({
+      ".codex/oh-my-opencodex.jsonc": JSON.stringify({
         approval_policy: "on-request",
       }),
     })
@@ -60,7 +60,7 @@ describe("E2E Pipeline", () => {
 
       expect(toml).toContain('model = "gpt-5.3-codex"')
       expect(toml).toContain("[permissions]")
-      expect(toml).toContain("[mcp_servers.oh-my-codex]")
+      expect(toml).toContain("[mcp_servers.oh-my-opencodex]")
       expect(toml).toContain(dir)
     } finally {
       cleanup(dir)
@@ -69,7 +69,7 @@ describe("E2E Pipeline", () => {
 
   it("generates AGENTS.md instructions under 32KB", () => {
     const dir = createWorkspace({
-      ".codex/oh-my-codex.jsonc": "{}",
+      ".codex/oh-my-opencodex.jsonc": "{}",
     })
 
     try {
@@ -86,7 +86,7 @@ describe("E2E Pipeline", () => {
 
   it("generates rules files in workspace", async () => {
     const dir = createWorkspace({
-      ".codex/oh-my-codex.jsonc": JSON.stringify({
+      ".codex/oh-my-opencodex.jsonc": JSON.stringify({
         approval_policy: "on-failure",
       }),
     })
@@ -109,7 +109,7 @@ describe("E2E Pipeline", () => {
 
   it("creates CodexWrapper with correct config", () => {
     const dir = createWorkspace({
-      ".codex/oh-my-codex.jsonc": JSON.stringify({
+      ".codex/oh-my-opencodex.jsonc": JSON.stringify({
         agents: { sisyphus: { model: "gpt-5.3-codex" } },
       }),
     })
@@ -136,7 +136,7 @@ describe("E2E Pipeline", () => {
 
   it("wires orchestrator components together", () => {
     const dir = createWorkspace({
-      ".codex/oh-my-codex.jsonc": "{}",
+      ".codex/oh-my-opencodex.jsonc": "{}",
     })
 
     try {
@@ -165,7 +165,7 @@ describe("E2E Pipeline", () => {
 
   it("MCP server starts and lists all tools for the loaded config", async () => {
     const dir = createWorkspace({
-      ".codex/oh-my-codex.jsonc": "{}",
+      ".codex/oh-my-opencodex.jsonc": "{}",
     })
 
     try {
@@ -193,7 +193,7 @@ describe("E2E Pipeline", () => {
 
   it("full pipeline: config -> instructions -> wrapper -> hooks -> MCP", async () => {
     const dir = createWorkspace({
-      ".codex/oh-my-codex.jsonc": JSON.stringify({
+      ".codex/oh-my-opencodex.jsonc": JSON.stringify({
         agents: {
           sisyphus: { model: "gpt-5.3-codex" },
           oracle: { model: "gpt-5.2" },
@@ -210,7 +210,7 @@ describe("E2E Pipeline", () => {
       const config = loadConfig(dir)
 
       const toml = generateCodexConfig(config, dir)
-      expect(toml).toContain("[mcp_servers.oh-my-codex]")
+      expect(toml).toContain("[mcp_servers.oh-my-opencodex]")
 
       const instructions = generateInstructions("sisyphus", config)
       expect(new TextEncoder().encode(instructions).length).toBeLessThanOrEqual(32768)

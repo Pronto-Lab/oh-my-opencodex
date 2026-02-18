@@ -46,7 +46,7 @@ describe("runDoctor", () => {
 
   it("reports missing config.toml as failure", () => {
     const dir = createTempWorkspace({
-      ".codex/oh-my-codex.jsonc": "{}",
+      ".codex/oh-my-opencodex.jsonc": "{}",
       "package.json": JSON.stringify({ name: "test", version: "0.1.0" }),
     })
 
@@ -59,12 +59,12 @@ describe("runDoctor", () => {
     }
   })
 
-  it("reports missing oh-my-codex.jsonc as failure", () => {
+  it("reports missing oh-my-opencodex.jsonc as failure", () => {
     const dir = createTempWorkspace({
       ".codex/config.toml": [
         'model = "gpt-5.3-codex"',
         "[permissions]",
-        "[mcp_servers.oh-my-codex]",
+        "[mcp_servers.oh-my-opencodex]",
       ].join("\n"),
       "package.json": JSON.stringify({ name: "test", version: "0.1.0" }),
     })
@@ -72,7 +72,7 @@ describe("runDoctor", () => {
     try {
       const { result, logs } = suppressConsole(() => runDoctor(dir))
       expect(result).toBe(1)
-      expect(logs.some((line) => line.includes("oh-my-codex.jsonc") && line.includes("missing"))).toBe(true)
+      expect(logs.some((line) => line.includes("oh-my-opencodex.jsonc") && line.includes("missing"))).toBe(true)
     } finally {
       cleanupTempDir(dir)
     }
@@ -81,7 +81,7 @@ describe("runDoctor", () => {
   it("detects invalid config.toml content", () => {
     const dir = createTempWorkspace({
       ".codex/config.toml": "this is not valid codex toml",
-      ".codex/oh-my-codex.jsonc": "{}",
+      ".codex/oh-my-opencodex.jsonc": "{}",
       "package.json": JSON.stringify({ name: "test", version: "0.1.0" }),
     })
 
@@ -102,10 +102,10 @@ describe("runDoctor", () => {
         "[permissions]",
         'approval_policy = "on-request"',
         "",
-        "[mcp_servers.oh-my-codex]",
-        'command = "oh-my-codex"',
+        "[mcp_servers.oh-my-opencodex]",
+        'command = "oh-my-opencodex"',
       ].join("\n"),
-      ".codex/oh-my-codex.jsonc": "{}",
+      ".codex/oh-my-opencodex.jsonc": "{}",
       "package.json": JSON.stringify({ name: "test", version: "0.1.0" }),
     })
 

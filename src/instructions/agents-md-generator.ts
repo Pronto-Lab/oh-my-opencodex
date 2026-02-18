@@ -1,4 +1,4 @@
-import type { OhMyCodexConfig } from "../config/schema/oh-my-codex-config"
+import type { OhMyOpenCodexConfig } from "../config/schema/oh-my-opencodex-config"
 import {
   buildCategorySection,
   buildDelegationSection,
@@ -10,7 +10,7 @@ const MAX_INSTRUCTIONS_BYTES = 32768
 const TRUNCATION_WARNING = "\n\n[WARNING] Instructions exceeded 32768 bytes and were truncated."
 
 function fallbackCoreInstructions(agentName: string): string {
-  return `You are ${agentName}, an oh-my-codex agent. Execute tasks with evidence-based verification.`
+  return `You are ${agentName}, an oh-my-opencodex agent. Execute tasks with evidence-based verification.`
 }
 
 function truncateToLimit(input: string): string {
@@ -25,7 +25,7 @@ function truncateToLimit(input: string): string {
   return `${prefix}${TRUNCATION_WARNING}`
 }
 
-export function generateInstructions(agentName: string, config: OhMyCodexConfig): string {
+export function generateInstructions(agentName: string, config: OhMyOpenCodexConfig): string {
   const prompt = getAgentPrompt(agentName)
 
   const sections = [

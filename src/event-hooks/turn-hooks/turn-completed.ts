@@ -1,4 +1,4 @@
-import type { OhMyCodexConfig } from "../../config/schema/oh-my-codex-config"
+import type { OhMyOpenCodexConfig } from "../../config/schema/oh-my-opencodex-config"
 import { log } from "../../shared/logger"
 import type { HookRegistration } from "../hook-registration"
 
@@ -9,7 +9,7 @@ const cumulativeUsage = {
 }
 
 export function createTurnCompletedHook(
-  _config: OhMyCodexConfig,
+  _config: OhMyOpenCodexConfig,
 ): HookRegistration<"turn:completed"> {
   return {
     event: "turn:completed",

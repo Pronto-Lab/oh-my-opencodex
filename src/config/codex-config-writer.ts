@@ -1,4 +1,4 @@
-import type { OhMyCodexConfig } from "./schema/oh-my-codex-config"
+import type { OhMyOpenCodexConfig } from "./schema/oh-my-opencodex-config"
 import { toToml } from "../shared/toml-writer"
 
 const WEBSEARCH_URL = "https://mcp.exa.ai"
@@ -6,7 +6,7 @@ const CONTEXT7_URL = "https://mcp.context7.com/mcp"
 const GREP_APP_URL = "https://mcp.grep.app"
 
 export function generateCodexConfig(
-  config: OhMyCodexConfig,
+  config: OhMyOpenCodexConfig,
   workingDirectory: string,
 ): string {
   const sections: string[] = []
@@ -48,13 +48,13 @@ function section(name: string, values: Record<string, unknown>): string {
   return `[${name}]\n${toToml(values)}`
 }
 
-function buildMcpServersToml(config: OhMyCodexConfig, workingDir: string): string {
+function buildMcpServersToml(config: OhMyOpenCodexConfig, workingDir: string): string {
   const lines: string[] = []
   const disabled = new Set(config.disabled_mcps ?? [])
 
-  lines.push("[mcp_servers.oh-my-codex]")
+  lines.push("[mcp_servers.oh-my-opencodex]")
   lines.push(toToml({
-    command: "oh-my-codex",
+    command: "oh-my-opencodex",
     args: ["mcp-server", "--dir", workingDir],
     enabled: true,
   }))

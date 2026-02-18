@@ -1,4 +1,4 @@
-import type { OhMyCodexConfig } from "../../config/schema/oh-my-codex-config"
+import type { OhMyOpenCodexConfig } from "../../config/schema/oh-my-opencodex-config"
 import { log } from "../../shared/logger"
 import type { HookRegistration } from "../hook-registration"
 
@@ -18,7 +18,7 @@ let consecutiveFailures = 0
 let retryAttempts = 0
 
 export function createSessionRecoveryHook(
-  config: OhMyCodexConfig,
+  config: OhMyOpenCodexConfig,
 ): HookRegistration<"turn:failed"> {
   const maxRetries = Math.max(1, config.boulder?.max_retries ?? 3)
 

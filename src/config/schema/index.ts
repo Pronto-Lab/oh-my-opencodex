@@ -1,4 +1,4 @@
-export { OhMyCodexConfigSchema, type OhMyCodexConfig } from "./oh-my-codex-config"
+export { OhMyOpenCodexConfigSchema, type OhMyOpenCodexConfig } from "./oh-my-opencodex-config"
 export { AgentOverrideSchema, type AgentOverride } from "./agent-overrides"
 export { CategorySchema, type Category } from "./categories"
 export { HooksConfigSchema, type HooksConfig } from "./hooks"

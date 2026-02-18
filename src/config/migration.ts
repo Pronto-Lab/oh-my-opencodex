@@ -1,6 +1,6 @@
 import * as fs from "fs"
 import * as path from "path"
-import { OhMyCodexConfigSchema, type OhMyCodexConfig } from "./schema/oh-my-codex-config"
+import { OhMyOpenCodexConfigSchema, type OhMyOpenCodexConfig } from "./schema/oh-my-opencodex-config"
 import { parseJsonc } from "../shared/jsonc-parser"
 import { log } from "../shared/logger"
 
@@ -38,7 +38,7 @@ export function detectLegacyConfig(workingDir: string): boolean {
   return false
 }
 
-export function migrateConfig(legacy: Record<string, unknown>): OhMyCodexConfig {
+export function migrateConfig(legacy: Record<string, unknown>): OhMyOpenCodexConfig {
   const migrated: Record<string, unknown> = {}
 
   for (const [key, value] of Object.entries(legacy)) {
@@ -59,8 +59,8 @@ export function migrateConfig(legacy: Record<string, unknown>): OhMyCodexConfig 
     migrated[key] = value
   }
 
-  const result = OhMyCodexConfigSchema.safeParse(migrated)
-  return result.success ? result.data : (migrated as OhMyCodexConfig)
+  const result = OhMyOpenCodexConfigSchema.safeParse(migrated)
+  return result.success ? result.data : (migrated as OhMyOpenCodexConfig)
 }
 
 function migrateAgents(agents: Record<string, unknown>): Record<string, unknown> {
@@ -157,7 +157,7 @@ export function autoMigrate(workingDir: string): { migrated: boolean; changes: s
       fs.mkdirSync(newConfigDir, { recursive: true })
     }
 
-    const newConfigPath = path.join(newConfigDir, "oh-my-codex.jsonc")
+    const newConfigPath = path.join(newConfigDir, "oh-my-opencodex.jsonc")
     fs.writeFileSync(newConfigPath, JSON.stringify(migrated, null, 2) + "\n", "utf-8")
 
     changes.push(`Migrated config from ${legacyPath} to ${newConfigPath}`)

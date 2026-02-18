@@ -1,4 +1,4 @@
-import type { OhMyCodexConfig } from "../../config/schema/oh-my-codex-config"
+import type { OhMyOpenCodexConfig } from "../../config/schema/oh-my-opencodex-config"
 import type { EventPayload } from "../../orchestrator/types"
 import { log } from "../../shared/logger"
 
@@ -58,7 +58,7 @@ export function getDestructiveCommands(): CommandRecord[] {
   return commandWatcher.getDestructiveCommands()
 }
 
-export function createCommandWatcherHook(_config?: OhMyCodexConfig): {
+export function createCommandWatcherHook(_config?: OhMyOpenCodexConfig): {
   event: "command:completed"
   handler: (payload: EventPayload["command:completed"]) => void
   priority: number

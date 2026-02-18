@@ -1,6 +1,6 @@
 // Config
 export { loadConfig } from "./config/config-loader"
-export type { OhMyCodexConfig } from "./config/schema/oh-my-codex-config"
+export type { OhMyOpenCodexConfig } from "./config/schema/oh-my-opencodex-config"
 
 // Instructions
 export { generateInstructions, buildCategorySection, buildDelegationSection, buildToolGuidanceSection } from "./instructions"

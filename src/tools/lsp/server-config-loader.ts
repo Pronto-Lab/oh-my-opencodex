@@ -47,8 +47,8 @@ export function getConfigPaths(): { project: string; user: string; codex: string
   const configDir = getCodexConfigDir()
 
   return {
-    project: detectConfigFile(join(cwd, ".codex", "oh-my-codex")).path,
-    user: detectConfigFile(join(configDir, "oh-my-codex")).path,
+    project: detectConfigFile(join(cwd, ".codex", "oh-my-opencodex")).path,
+    user: detectConfigFile(join(configDir, "oh-my-opencodex")).path,
     codex: detectConfigFile(join(configDir, "codex")).path,
   }
 }

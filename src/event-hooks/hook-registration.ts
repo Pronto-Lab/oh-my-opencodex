@@ -1,6 +1,6 @@
-import type { EventPayload, OhMyCodexEvent } from "../orchestrator/types"
+import type { EventPayload, OhMyOpenCodexEvent } from "../orchestrator/types"
 
-export type HookRegistration<E extends OhMyCodexEvent = OhMyCodexEvent> = {
+export type HookRegistration<E extends OhMyOpenCodexEvent = OhMyOpenCodexEvent> = {
   event: E
   handler: (payload: EventPayload[E]) => Promise<void>
   priority: number

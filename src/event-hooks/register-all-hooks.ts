@@ -1,4 +1,4 @@
-import type { OhMyCodexConfig } from "../config/schema/oh-my-codex-config"
+import type { OhMyOpenCodexConfig } from "../config/schema/oh-my-opencodex-config"
 import type { HookRegistry } from "./hook-registry"
 import {
   createBackgroundCompletedHook,
@@ -37,7 +37,7 @@ function isHookEnabled(disabledHooks: Set<string>, name: string): boolean {
 
 export function registerAllHooks(
   registry: HookRegistry,
-  config: OhMyCodexConfig,
+  config: OhMyOpenCodexConfig,
   workingDirectory: string,
 ): void {
   const disabledHooks = new Set(config.disabled_hooks ?? [])

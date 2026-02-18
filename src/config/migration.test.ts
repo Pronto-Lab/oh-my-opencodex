@@ -44,14 +44,14 @@ describe("migrateConfig", () => {
 
 describe("autoMigrate", () => {
   it("returns no-op when no legacy config file exists", async () => {
-    const workingDir = await mkdtemp(path.join(os.tmpdir(), "oh-my-codex-migration-"))
+    const workingDir = await mkdtemp(path.join(os.tmpdir(), "oh-my-opencodex-migration-"))
     const result = autoMigrate(workingDir)
 
     expect(result).toEqual({ migrated: false, changes: [] })
   })
 
   it("writes migrated config into .codex when legacy file exists", async () => {
-    const workingDir = await mkdtemp(path.join(os.tmpdir(), "oh-my-codex-migration-"))
+    const workingDir = await mkdtemp(path.join(os.tmpdir(), "oh-my-opencodex-migration-"))
     const legacyDir = path.join(workingDir, ".opencode")
     await mkdir(legacyDir, { recursive: true })
 
@@ -76,7 +76,7 @@ describe("autoMigrate", () => {
     expect(result.changes.length).toBeGreaterThan(0)
 
     const migratedFile = await Bun.file(
-      path.join(workingDir, ".codex", "oh-my-codex.jsonc"),
+      path.join(workingDir, ".codex", "oh-my-opencodex.jsonc"),
     ).json()
     expect(migratedFile.agents.sisyphus.model).toBe("gpt-5.3-codex")
     expect(migratedFile.agents.metis).toBeUndefined()

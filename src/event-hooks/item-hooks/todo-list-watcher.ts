@@ -1,4 +1,4 @@
-import type { OhMyCodexConfig } from "../../config/schema/oh-my-codex-config"
+import type { OhMyOpenCodexConfig } from "../../config/schema/oh-my-opencodex-config"
 import type { EventPayload } from "../../orchestrator/types"
 
 export type TodoItem = {
@@ -51,7 +51,7 @@ class TodoListWatcher {
 
 export const todoListWatcher = new TodoListWatcher()
 
-export function createTodoListWatcherHook(_config?: OhMyCodexConfig): {
+export function createTodoListWatcherHook(_config?: OhMyOpenCodexConfig): {
   event: "todo_list:completed"
   handler: (payload: EventPayload["todo_list:completed"]) => void
   priority: number

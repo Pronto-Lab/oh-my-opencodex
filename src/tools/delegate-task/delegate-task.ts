@@ -1,4 +1,4 @@
-import type { OhMyCodexConfig } from "../../config/schema/oh-my-codex-config"
+import type { OhMyOpenCodexConfig } from "../../config/schema/oh-my-opencodex-config"
 import type { ThreadPool } from "../../orchestrator/thread-pool"
 import { resolveCategory } from "./category-resolver"
 import { resolveSkills } from "./skill-resolver"
@@ -24,7 +24,7 @@ function sleep(ms: number): Promise<void> {
   })
 }
 
-function resolveModel(args: DelegateTaskArgs, config: OhMyCodexConfig): { model: string; reason: string } {
+function resolveModel(args: DelegateTaskArgs, config: OhMyOpenCodexConfig): { model: string; reason: string } {
   if (args.subagentType) {
     const mapped = SUBAGENT_MODEL_MAP[args.subagentType]
     if (mapped) {
@@ -93,7 +93,7 @@ async function waitForTaskCompletion(pool: ThreadPool, taskId: string): Promise<
 
 export async function delegateTask(
   pool: ThreadPool,
-  config: OhMyCodexConfig,
+  config: OhMyOpenCodexConfig,
   workingDir: string,
   args: DelegateTaskArgs,
 ): Promise<string> {

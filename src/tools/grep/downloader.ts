@@ -17,10 +17,10 @@ const PLATFORM_CONFIG: Record<string, { platform: string; extension: "tar.gz" | 
 function getInstallDir(): string {
   if (process.platform === "win32") {
     const base = process.env.LOCALAPPDATA || process.env.APPDATA || join(process.env.USERPROFILE ?? ".", "AppData", "Local")
-    return join(base, "oh-my-codex", "bin")
+    return join(base, "oh-my-opencodex", "bin")
   }
   const base = process.env.XDG_CACHE_HOME || join(process.env.HOME ?? ".", ".cache")
-  return join(base, "oh-my-codex", "bin")
+  return join(base, "oh-my-opencodex", "bin")
 }
 
 function getRgPath(): string {

@@ -1,4 +1,4 @@
-import type { OhMyCodexConfig } from "../../config/schema/oh-my-codex-config"
+import type { OhMyOpenCodexConfig } from "../../config/schema/oh-my-opencodex-config"
 import type { Category } from "../../config/schema/categories"
 import type { CategoryResolution } from "./types"
 
@@ -62,7 +62,7 @@ function normalizeCategory(
   }
 }
 
-function buildCategoryMap(config: OhMyCodexConfig): Record<string, CategoryResolution> {
+function buildCategoryMap(config: OhMyOpenCodexConfig): Record<string, CategoryResolution> {
   const mergedCategories: Record<string, CategoryResolution> = { ...BUILTIN_CATEGORIES }
   const userCategories = config.categories ?? {}
 
@@ -74,7 +74,7 @@ function buildCategoryMap(config: OhMyCodexConfig): Record<string, CategoryResol
   return mergedCategories
 }
 
-export function resolveCategory(name: string, config: OhMyCodexConfig): CategoryResolution {
+export function resolveCategory(name: string, config: OhMyOpenCodexConfig): CategoryResolution {
   const mergedCategories = buildCategoryMap(config)
   const resolution = mergedCategories[name]
 

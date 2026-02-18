@@ -2,7 +2,7 @@ import { mkdir, writeFile } from "node:fs/promises"
 import path from "node:path"
 import { loadConfig } from "../config/config-loader"
 import { generateCodexConfig } from "../config/codex-config-writer"
-import type { OhMyCodexConfig } from "../config/schema/oh-my-codex-config"
+import type { OhMyOpenCodexConfig } from "../config/schema/oh-my-opencodex-config"
 import { HookRegistry } from "../event-hooks/hook-registry"
 import { registerAllHooks } from "../event-hooks/register-all-hooks"
 import { generateInstructions } from "../instructions/agents-md-generator"
@@ -15,7 +15,7 @@ const DEFAULT_AGENT_NAME = "sisyphus"
 const MAX_CONTINUATION_ITERATIONS = 20
 
 export type OrchestratorContext = {
-  config: OhMyCodexConfig
+  config: OhMyOpenCodexConfig
   wrapper: CodexWrapper
   eventLoop: EventLoop
   threadPool: ThreadPool
@@ -30,12 +30,12 @@ type CreateOrchestratorArgs = {
 
 type SessionStream = Awaited<ReturnType<CodexWrapper["startSession"]>>
 
-function resolveAgentName(config: OhMyCodexConfig, preferred?: string): string {
+function resolveAgentName(config: OhMyOpenCodexConfig, preferred?: string): string {
   return preferred ?? config.default_agent ?? DEFAULT_AGENT_NAME
 }
 
 async function writeCodexConfig(
-  config: OhMyCodexConfig,
+  config: OhMyOpenCodexConfig,
   workingDirectory: string,
 ): Promise<void> {
   const codexDir = path.join(workingDirectory, ".codex")

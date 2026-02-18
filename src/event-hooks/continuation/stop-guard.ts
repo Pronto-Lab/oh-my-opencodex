@@ -1,6 +1,6 @@
 import * as fs from "fs"
 import * as path from "path"
-import type { OhMyCodexConfig } from "../../config/schema/oh-my-codex-config"
+import type { OhMyOpenCodexConfig } from "../../config/schema/oh-my-opencodex-config"
 import type { HookRegistry } from "../hook-registry"
 import { clearBoulderState } from "../../features/boulder-state"
 import { clearContinuationState } from "../../features/run-continuation-state"
@@ -50,7 +50,7 @@ export function requestStopContinuation(): void {
 }
 
 export function createStopGuardHook(
-  _config: OhMyCodexConfig,
+  _config: OhMyOpenCodexConfig,
   workingDir: string,
   registry: HookRegistry,
 ): void {

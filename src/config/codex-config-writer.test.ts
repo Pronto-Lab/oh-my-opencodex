@@ -25,7 +25,7 @@ describe("generateCodexConfig", () => {
 
     const toml = generateCodexConfig(config, "/repo")
 
-    expect(toml).toContain("[mcp_servers.oh-my-codex]")
+    expect(toml).toContain("[mcp_servers.oh-my-opencodex]")
     expect(toml).toContain('args = ["mcp-server", "--dir", "/repo"]')
     expect(toml).toContain("[mcp_servers.websearch]")
     expect(toml).not.toContain("[mcp_servers.context7]")
@@ -55,15 +55,15 @@ describe("generateCodexConfig", () => {
     expect(toml).toContain('sandbox_mode = "workspace-write"')
   })
 
-  it("always includes oh-my-codex MCP server even when all MCPs disabled", () => {
+  it("always includes oh-my-opencodex MCP server even when all MCPs disabled", () => {
     const config = {
       disabled_mcps: ["websearch", "context7", "grep_app"],
     }
 
     const toml = generateCodexConfig(config, "/workspace")
 
-    expect(toml).toContain("[mcp_servers.oh-my-codex]")
-    expect(toml).toContain('command = "oh-my-codex"')
+    expect(toml).toContain("[mcp_servers.oh-my-opencodex]")
+    expect(toml).toContain('command = "oh-my-opencodex"')
     expect(toml).toContain('args = ["mcp-server", "--dir", "/workspace"]')
     expect(toml).toContain("enabled = true")
     expect(toml).not.toContain("[mcp_servers.websearch]")
@@ -88,7 +88,7 @@ describe("generateCodexConfig", () => {
     expect(toml).toContain('model = "gpt-5.3-codex"')
     expect(toml).toContain("[permissions]")
     expect(toml).toContain("[features]")
-    expect(toml).toContain("[mcp_servers.oh-my-codex]")
+    expect(toml).toContain("[mcp_servers.oh-my-opencodex]")
     expect(toml).toContain("[notify]")
   })
 })
