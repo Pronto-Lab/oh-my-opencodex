@@ -1,1 +1,1 @@
-export {}
+export { grepSearch } from "./tools"

@@ -1,1 +1,1 @@
-export {}
+export { interactiveBash } from "./interactive-bash"

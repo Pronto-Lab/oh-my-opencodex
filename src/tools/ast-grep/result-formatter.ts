@@ -1,0 +1,57 @@
+import type { SgResult } from "./types"
+
+function formatTruncatedReason(result: SgResult): string {
+  if (result.truncatedReason === "max_matches") {
+    return `showing first ${result.matches.length} of ${result.totalMatches}`
+  }
+  if (result.truncatedReason === "max_output_bytes") {
+    return "output exceeded 1MB limit"
+  }
+  return "search timed out"
+}
+
+export function formatSearchResult(result: SgResult): string {
+  if (result.error) return `Error: ${result.error}`
+  if (result.matches.length === 0) return "No matches found"
+
+  const lines: string[] = []
+  if (result.truncated) {
+    lines.push(`[TRUNCATED] Results truncated (${formatTruncatedReason(result)})\n`)
+  }
+
+  const truncatedInfo = result.truncated ? ` (truncated from ${result.totalMatches})` : ""
+  lines.push(`Found ${result.matches.length} match(es)${truncatedInfo}:\n`)
+
+  for (const match of result.matches) {
+    const loc = `${match.file}:${match.range.start.line + 1}:${match.range.start.column + 1}`
+    lines.push(loc)
+    lines.push(`  ${match.lines.trim()}`)
+    lines.push("")
+  }
+
+  return lines.join("\n")
+}
+
+export function formatReplaceResult(result: SgResult, isDryRun: boolean): string {
+  if (result.error) return `Error: ${result.error}`
+  if (result.matches.length === 0) return "No matches found to replace"
+
+  const lines: string[] = []
+  if (result.truncated) {
+    lines.push(`[TRUNCATED] Results truncated (${formatTruncatedReason(result)})\n`)
+  }
+
+  lines.push(`${isDryRun ? "[DRY RUN] " : ""}${result.matches.length} replacement(s):\n`)
+  for (const match of result.matches) {
+    const loc = `${match.file}:${match.range.start.line + 1}:${match.range.start.column + 1}`
+    lines.push(loc)
+    lines.push(`  ${match.text}`)
+    lines.push("")
+  }
+
+  if (isDryRun) {
+    lines.push("Use dryRun=false to apply changes")
+  }
+
+  return lines.join("\n")
+}

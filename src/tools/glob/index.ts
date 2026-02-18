@@ -1,1 +1,1 @@
-export {}
+export { globSearch } from "./tools"
