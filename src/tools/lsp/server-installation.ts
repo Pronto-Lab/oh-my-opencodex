@@ -2,9 +2,9 @@ import { existsSync } from "node:fs"
 import { homedir } from "node:os"
 import { join } from "node:path"
 
-function getOpenCodeConfigDir(): string {
+function getCodexConfigDir(): string {
   const xdgConfigHome = process.env.XDG_CONFIG_HOME
-  return xdgConfigHome ? join(xdgConfigHome, "opencode") : join(homedir(), ".config", "opencode")
+  return xdgConfigHome ? join(xdgConfigHome, "codex") : join(homedir(), ".config", "codex")
 }
 
 function getDataDir(): string {
@@ -50,8 +50,8 @@ export function isServerInstalled(command: string[]): boolean {
   }
 
   const cwd = process.cwd()
-  const configDir = getOpenCodeConfigDir()
-  const dataDir = join(getDataDir(), "opencode")
+  const configDir = getCodexConfigDir()
+  const dataDir = join(getDataDir(), "codex")
   const additionalBases = [
     join(cwd, "node_modules", ".bin"),
     join(configDir, "bin"),

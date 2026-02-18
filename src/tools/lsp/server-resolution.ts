@@ -116,6 +116,6 @@ export function getAllServers(): Array<{
   return result
 }
 
-export function getConfigPaths_(): { project: string; user: string; opencode: string } {
+export function getConfigPaths_(): { project: string; user: string; codex: string } {
   return getConfigPaths()
 }

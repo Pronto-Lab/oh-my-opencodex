@@ -19,15 +19,15 @@ interface ConfigJson {
   lsp?: Record<string, LspEntry>
 }
 
-type ConfigSource = "project" | "user" | "opencode"
+type ConfigSource = "project" | "user" | "codex"
 
 interface ServerWithSource extends ResolvedServer {
   source: ConfigSource
 }
 
-function getOpenCodeConfigDir(): string {
+function getCodexConfigDir(): string {
   const xdgConfigHome = process.env.XDG_CONFIG_HOME
-  return xdgConfigHome ? join(xdgConfigHome, "opencode") : join(homedir(), ".config", "opencode")
+  return xdgConfigHome ? join(xdgConfigHome, "codex") : join(homedir(), ".config", "codex")
 }
 
 export function loadJsonFile<T>(path: string): T | null {
@@ -42,14 +42,14 @@ export function loadJsonFile<T>(path: string): T | null {
   }
 }
 
-export function getConfigPaths(): { project: string; user: string; opencode: string } {
+export function getConfigPaths(): { project: string; user: string; codex: string } {
   const cwd = process.cwd()
-  const configDir = getOpenCodeConfigDir()
+  const configDir = getCodexConfigDir()
 
   return {
-    project: detectConfigFile(join(cwd, ".opencode", "oh-my-opencodex")).path,
-    user: detectConfigFile(join(configDir, "oh-my-opencodex")).path,
-    opencode: detectConfigFile(join(configDir, "opencode")).path,
+    project: detectConfigFile(join(cwd, ".codex", "oh-my-codex")).path,
+    user: detectConfigFile(join(configDir, "oh-my-codex")).path,
+    codex: detectConfigFile(join(configDir, "codex")).path,
   }
 }
 
@@ -67,9 +67,9 @@ export function loadAllConfigs(): Map<ConfigSource, ConfigJson> {
     configs.set("user", user)
   }
 
-  const opencode = loadJsonFile<ConfigJson>(paths.opencode)
-  if (opencode) {
-    configs.set("opencode", opencode)
+  const codex = loadJsonFile<ConfigJson>(paths.codex)
+  if (codex) {
+    configs.set("codex", codex)
   }
 
   return configs
@@ -80,7 +80,7 @@ export function getMergedServers(): ServerWithSource[] {
   const servers: ServerWithSource[] = []
   const disabled = new Set<string>()
   const seen = new Set<string>()
-  const sources: ConfigSource[] = ["project", "user", "opencode"]
+  const sources: ConfigSource[] = ["project", "user", "codex"]
 
   for (const source of sources) {
     const config = configs.get(source)
@@ -120,13 +120,13 @@ export function getMergedServers(): ServerWithSource[] {
       command: config.command,
       extensions: config.extensions,
       priority: -100,
-      source: "opencode",
+      source: "codex",
     })
   }
 
   return servers.sort((a, b) => {
     if (a.source !== b.source) {
-      const order: Record<ConfigSource, number> = { project: 0, user: 1, opencode: 2 }
+      const order: Record<ConfigSource, number> = { project: 0, user: 1, codex: 2 }
       return order[a.source] - order[b.source]
     }
 

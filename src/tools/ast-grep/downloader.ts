@@ -30,10 +30,10 @@ function getAstGrepVersion(): string {
 export function getCacheDir(): string {
   if (process.platform === "win32") {
     const base = process.env.LOCALAPPDATA || process.env.APPDATA || join(process.env.USERPROFILE ?? ".", "AppData", "Local")
-    return join(base, "oh-my-opencodex", "bin")
+    return join(base, "oh-my-codex", "bin")
   }
   const base = process.env.XDG_CACHE_HOME || join(process.env.HOME ?? ".", ".cache")
-  return join(base, "oh-my-opencodex", "bin")
+  return join(base, "oh-my-codex", "bin")
 }
 
 export function getBinaryName(): string {

@@ -52,7 +52,7 @@ export function formatServerLookupError(result: Exclude<ServerLookupResult, { st
     "",
     `Available servers: ${result.availableServers.slice(0, 10).join(", ")}${result.availableServers.length > 10 ? "..." : ""}`,
     "",
-    "To add a custom server, configure 'lsp' in oh-my-opencodex.json:",
+    "To add a custom server, configure 'lsp' in oh-my-codex.jsonc:",
     "  {",
     "    \"lsp\": {",
     "      \"my-server\": {",

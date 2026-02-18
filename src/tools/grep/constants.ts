@@ -26,7 +26,7 @@ function findExecutable(name: string): string | null {
   return null
 }
 
-function getOpenCodeBundledRg(): string | null {
+function getCodexBundledRg(): string | null {
   const execDir = dirname(process.execPath)
   const rgName = process.platform === "win32" ? "rg.exe" : "rg"
   const candidates = [
@@ -45,7 +45,7 @@ function getOpenCodeBundledRg(): string | null {
 export function resolveGrepCli(): ResolvedCli {
   if (cachedCli) return cachedCli
 
-  const bundledRg = getOpenCodeBundledRg()
+  const bundledRg = getCodexBundledRg()
   if (bundledRg) return (cachedCli = { path: bundledRg, backend: "rg" })
 
   const systemRg = findExecutable("rg")
