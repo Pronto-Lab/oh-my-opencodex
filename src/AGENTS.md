@@ -10,7 +10,7 @@ Root source directory. Entry point `index.ts` orchestrates 4-step initialization
 
 | File | Purpose |
 |------|---------|
-| `index.ts` | Plugin entry, exports `OhMyOpenCodePlugin` |
+| `index.ts` | Plugin entry, exports `OhMyOpenCodexPlugin` |
 | `plugin-config.ts` | JSONC parse, multi-level merge (user → project → defaults), Zod validation |
 | `create-managers.ts` | TmuxSessionManager, BackgroundManager, SkillMcpManager, ConfigHandler |
 | `create-tools.ts` | SkillContext + AvailableCategories + ToolRegistry |
@@ -21,8 +21,8 @@ Root source directory. Entry point `index.ts` orchestrates 4-step initialization
 
 ```
 loadPluginConfig(directory, ctx)
-  1. User: ~/.config/opencode/oh-my-opencode.jsonc
-  2. Project: .opencode/oh-my-opencode.jsonc
+  1. User: ~/.config/opencode/oh-my-opencodex.jsonc
+  2. Project: .opencode/oh-my-opencodex.jsonc
   3. mergeConfigs(user, project) → deepMerge for agents/categories, Set union for disabled_*
   4. Zod safeParse → defaults for omitted fields
   5. migrateConfigFile() → legacy key transformation

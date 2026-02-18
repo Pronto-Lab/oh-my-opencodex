@@ -1,4 +1,4 @@
-import type { OhMyOpenCodeConfig, HookName } from "../../config"
+import type { OhMyOpenCodexConfig, HookName } from "../../config"
 import type { ModelCacheState } from "../../plugin-state"
 import type { PluginContext } from "../types"
 
@@ -57,7 +57,7 @@ export type SessionHooks = {
 
 export function createSessionHooks(args: {
   ctx: PluginContext
-  pluginConfig: OhMyOpenCodeConfig
+  pluginConfig: OhMyOpenCodexConfig
   modelCacheState: ModelCacheState
   isHookEnabled: (hookName: HookName) => boolean
   safeHookEnabled: boolean

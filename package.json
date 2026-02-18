@@ -1,12 +1,12 @@
 {
-  "name": "oh-my-opencode",
+  "name": "oh-my-opencodex",
   "version": "3.7.1",
   "description": "The Best AI Agent Harness - Batteries-Included OpenCode Plugin with Multi-Model Orchestration, Parallel Background Agents, and Crafted LSP/AST Tools",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
   "bin": {
-    "oh-my-opencode": "./bin/oh-my-opencode.js"
+    "oh-my-opencodex": "./bin/oh-my-opencodex.js"
   },
   "files": [
     "dist",
@@ -18,7 +18,7 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./schema.json": "./dist/oh-my-opencode.schema.json"
+    "./schema.json": "./dist/oh-my-opencodex.schema.json"
   },
   "scripts": {
     "build": "bun build src/index.ts --outdir dist --target bun --format esm --external @ast-grep/napi && tsc --emitDeclarationOnly && bun build src/cli/index.ts --outdir dist/cli --target bun --format esm --external @ast-grep/napi && bun run build:schema",
@@ -44,12 +44,12 @@
   "license": "SUL-1.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/code-yeongyu/oh-my-opencode.git"
+    "url": "git+https://github.com/code-yeongyu/oh-my-opencodex.git"
   },
   "bugs": {
-    "url": "https://github.com/code-yeongyu/oh-my-opencode/issues"
+    "url": "https://github.com/code-yeongyu/oh-my-opencodex/issues"
   },
-  "homepage": "https://github.com/code-yeongyu/oh-my-opencode#readme",
+  "homepage": "https://github.com/code-yeongyu/oh-my-opencodex#readme",
   "dependencies": {
     "@ast-grep/cli": "^0.40.0",
     "@ast-grep/napi": "^0.40.0",
@@ -74,13 +74,13 @@
     "typescript": "^5.7.3"
   },
   "optionalDependencies": {
-    "oh-my-opencode-darwin-arm64": "3.7.1",
-    "oh-my-opencode-darwin-x64": "3.7.1",
-    "oh-my-opencode-linux-arm64": "3.7.1",
-    "oh-my-opencode-linux-arm64-musl": "3.7.1",
-    "oh-my-opencode-linux-x64": "3.7.1",
-    "oh-my-opencode-linux-x64-musl": "3.7.1",
-    "oh-my-opencode-windows-x64": "3.7.1"
+    "oh-my-opencodex-darwin-arm64": "3.7.1",
+    "oh-my-opencodex-darwin-x64": "3.7.1",
+    "oh-my-opencodex-linux-arm64": "3.7.1",
+    "oh-my-opencodex-linux-arm64-musl": "3.7.1",
+    "oh-my-opencodex-linux-x64": "3.7.1",
+    "oh-my-opencodex-linux-x64-musl": "3.7.1",
+    "oh-my-opencodex-windows-x64": "3.7.1"
   },
   "trustedDependencies": [
     "@ast-grep/cli",

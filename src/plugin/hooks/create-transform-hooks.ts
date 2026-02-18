@@ -1,4 +1,4 @@
-import type { OhMyOpenCodeConfig } from "../../config"
+import type { OhMyOpenCodexConfig } from "../../config"
 import type { PluginContext } from "../types"
 
 import {
@@ -21,7 +21,7 @@ export type TransformHooks = {
 
 export function createTransformHooks(args: {
   ctx: PluginContext
-  pluginConfig: OhMyOpenCodeConfig
+  pluginConfig: OhMyOpenCodexConfig
   isHookEnabled: (hookName: string) => boolean
   safeHookEnabled?: boolean
 }): TransformHooks {

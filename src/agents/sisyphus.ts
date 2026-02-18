@@ -28,6 +28,15 @@ import {
   categorizeTools,
 } from "./dynamic-agent-prompt-builder";
 
+export type SisyphusPromptSource = "default" | "gpt";
+
+export function getSisyphusPromptSource(model?: string): SisyphusPromptSource {
+  if (model && isGptModel(model)) {
+    return "gpt";
+  }
+  return "default";
+}
+
 function buildTaskManagementSection(useTaskSystem: boolean): string {
   if (useTaskSystem) {
     return `<Task_Management>
@@ -138,6 +147,40 @@ Should I proceed with [recommendation], or would you prefer differently?
 </Task_Management>`;
 }
 
+function buildGptSisyphusPrompt(
+  availableAgents: AvailableAgent[],
+  availableTools: AvailableTool[] = [],
+  availableSkills: AvailableSkill[] = [],
+  availableCategories: AvailableCategory[] = [],
+  useTaskSystem = false,
+): string {
+  const basePrompt = buildDynamicSisyphusPrompt(
+    availableAgents,
+    availableTools,
+    availableSkills,
+    availableCategories,
+    useTaskSystem,
+  );
+  const trackingType = useTaskSystem ? "TaskCreate/TaskUpdate" : "todowrite";
+
+  return `<GPT_5_2_OPTIMIZATION>
+You are running in GPT mode. Apply strict instruction adherence.
+
+Execution policy:
+- Follow explicit requirements first. Do not infer extra scope.
+- Prefer concrete tool evidence over assumptions.
+- Keep responses concise unless the user requests detail.
+- For non-trivial work, maintain live tracking with ${trackingType}.
+- Delegate aggressively via task(category/subagent_type) when work is parallelizable.
+
+Quality policy:
+- Verify every changed file with diagnostics/tests/build before completion.
+- Treat "no evidence" as "not done".
+</GPT_5_2_OPTIMIZATION>
+
+${basePrompt}`;
+}
+
 function buildDynamicSisyphusPrompt(
   availableAgents: AvailableAgent[],
   availableTools: AvailableTool[] = [],
@@ -167,7 +210,7 @@ function buildDynamicSisyphusPrompt(
     : "YOUR TODO CREATION WOULD BE TRACKED BY HOOK([SYSTEM REMINDER - TODO CONTINUATION])";
 
   return `<Role>
-You are "Sisyphus" - Powerful AI Agent with orchestration capabilities from OhMyOpenCode.
+You are "Sisyphus" - Powerful AI Agent with orchestration capabilities from OhMyOpenCodex.
 
 **Why Sisyphus?**: Humans roll their boulder every day. So do you. We're not so different—your code should be indistinguishable from a senior engineer's.
 
@@ -498,6 +541,34 @@ ${antiPatterns}
 `;
 }
 
+function buildSisyphusPrompt(
+  model: string,
+  availableAgents: AvailableAgent[],
+  availableTools: AvailableTool[] = [],
+  availableSkills: AvailableSkill[] = [],
+  availableCategories: AvailableCategory[] = [],
+  useTaskSystem = false,
+): string {
+  const source = getSisyphusPromptSource(model);
+  if (source === "gpt") {
+    return buildGptSisyphusPrompt(
+      availableAgents,
+      availableTools,
+      availableSkills,
+      availableCategories,
+      useTaskSystem,
+    );
+  }
+
+  return buildDynamicSisyphusPrompt(
+    availableAgents,
+    availableTools,
+    availableSkills,
+    availableCategories,
+    useTaskSystem,
+  );
+}
+
 export function createSisyphusAgent(
   model: string,
   availableAgents?: AvailableAgent[],
@@ -509,15 +580,14 @@ export function createSisyphusAgent(
   const tools = availableToolNames ? categorizeTools(availableToolNames) : [];
   const skills = availableSkills ?? [];
   const categories = availableCategories ?? [];
-  const prompt = availableAgents
-    ? buildDynamicSisyphusPrompt(
-        availableAgents,
-        tools,
-        skills,
-        categories,
-        useTaskSystem,
-      )
-    : buildDynamicSisyphusPrompt([], tools, skills, categories, useTaskSystem);
+  const prompt = buildSisyphusPrompt(
+    model,
+    availableAgents ?? [],
+    tools,
+    skills,
+    categories,
+    useTaskSystem,
+  );
 
   const permission = {
     question: "allow",
@@ -525,7 +595,7 @@ export function createSisyphusAgent(
   } as AgentConfig["permission"];
   const base = {
     description:
-      "Powerful AI orchestrator. Plans obsessively with todos, assesses search complexity before exploration, delegates strategically via category+skills combinations. Uses explore for internal code (parallel-friendly), librarian for external docs. (Sisyphus - OhMyOpenCode)",
+      "Powerful AI orchestrator. Plans obsessively with todos, assesses search complexity before exploration, delegates strategically via category+skills combinations. Uses explore for internal code (parallel-friendly), librarian for external docs. (Sisyphus - OhMyOpenCodex)",
     mode: MODE,
     model,
     maxTokens: 64000,

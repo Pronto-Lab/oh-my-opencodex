@@ -197,14 +197,14 @@ Plan 생성 (assumptions 문서화)
 
 1. **ULW mode에서 Plan Agent 호출**
    ```bash
-   oh-my-opencode run "Complex task requiring planning. ulw"
+   oh-my-opencodex run "Complex task requiring planning. ulw"
    ```
    - 예상: Plan 생성 후 정상 종료
    - 확인: 무한루프 없음
 
 2. **Interactive mode (변경 없어야 함)**
    ```bash
-   oh-my-opencode run --agent prometheus "Design X"
+   oh-my-opencodex run --agent prometheus "Design X"
    ```
    - 예상: Clarifying questions 여전히 가능
    - 확인: 사용자와 대화 가능
@@ -352,6 +352,6 @@ Plan Agent 실행
 **Tested:** ⏳ Pending  
 **Deployed:** ⏳ Pending  
 
-**Analyst:** Sisyphus (oh-my-opencode ultrawork mode)  
+**Analyst:** Sisyphus (oh-my-opencodex ultrawork mode)  
 **Date:** 2026-02-05  
 **Session:** fast-ember

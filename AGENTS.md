@@ -1,15 +1,15 @@
-# oh-my-opencode — OpenCode Plugin
+# oh-my-opencodex — OpenCode Plugin
 
 **Generated:** 2026-02-17 | **Commit:** aac79f03 | **Branch:** dev
 
 ## OVERVIEW
 
-OpenCode plugin (npm: `oh-my-opencode`) that extends Claude Code (OpenCode fork) with multi-agent orchestration, 41 lifecycle hooks, 26 tools, skill/command/MCP systems, and Claude Code compatibility. 1164 TypeScript files, 133k LOC.
+OpenCode plugin (npm: `oh-my-opencodex`) that extends Claude Code (OpenCode fork) with multi-agent orchestration, 41 lifecycle hooks, 26 tools, skill/command/MCP systems, and Claude Code compatibility. 1164 TypeScript files, 133k LOC.
 
 ## STRUCTURE
 
 ```
-oh-my-opencode/
+oh-my-opencodex/
 ├── src/
 │   ├── index.ts              # Plugin entry: loadConfig → createManagers → createTools → createHooks → createPluginInterface
 │   ├── plugin-config.ts      # JSONC multi-level config: user → project → defaults (Zod v4)
@@ -30,7 +30,7 @@ oh-my-opencode/
 ## INITIALIZATION FLOW
 
 ```
-OhMyOpenCodePlugin(ctx)
+OhMyOpenCodexPlugin(ctx)
   ├─→ loadPluginConfig()         # JSONC parse → project/user merge → Zod validate → migrate
   ├─→ createManagers()           # TmuxSessionManager, BackgroundManager, SkillMcpManager, ConfigHandler
   ├─→ createTools()              # SkillContext + AvailableCategories + ToolRegistry (26 tools)
@@ -64,12 +64,12 @@ OhMyOpenCodePlugin(ctx)
 | Add new command | `src/features/builtin-commands/` | Template in templates/ |
 | Add new CLI command | `src/cli/cli-program.ts` | Commander.js subcommand |
 | Add new doctor check | `src/cli/doctor/checks/` | Register in checks/index.ts |
-| Modify config schema | `src/config/schema/` + update root schema | Zod v4, add to OhMyOpenCodeConfigSchema |
+| Modify config schema | `src/config/schema/` + update root schema | Zod v4, add to OhMyOpenCodexConfigSchema |
 
 ## MULTI-LEVEL CONFIG
 
 ```
-Project (.opencode/oh-my-opencode.jsonc)  →  User (~/.config/opencode/oh-my-opencode.jsonc)  →  Defaults
+Project (.opencode/oh-my-opencodex.jsonc)  →  User (~/.config/opencode/oh-my-opencodex.jsonc)  →  Defaults
 ```
 
 Fields: agents (14 overridable), categories (8 built-in + custom), disabled_* arrays, 19 feature-specific configs.
@@ -105,14 +105,14 @@ Fields: agents (14 overridable), categories (8 built-in + custom), disabled_* ar
 ```bash
 bun test                    # Vitest test suite
 bun run build              # Build plugin
-bunx oh-my-opencode install # Interactive setup
-bunx oh-my-opencode doctor  # Health diagnostics
-bunx oh-my-opencode run     # Non-interactive session
+bunx oh-my-opencodex install # Interactive setup
+bunx oh-my-opencodex doctor  # Health diagnostics
+bunx oh-my-opencodex run     # Non-interactive session
 ```
 
 ## NOTES
 
-- Logger writes to `/tmp/oh-my-opencode.log` — check there for debugging
+- Logger writes to `/tmp/oh-my-opencodex.log` — check there for debugging
 - Background tasks: 5 concurrent per model/provider (configurable)
 - Plugin load timeout: 10s for Claude Code plugins
 - Model fallback priority: Claude > OpenAI > Gemini > Copilot > OpenCode Zen > Z.ai > Kimi

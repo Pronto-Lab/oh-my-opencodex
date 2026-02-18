@@ -71,7 +71,7 @@ export async function buildPrometheusAgentConfig(params: {
     mode: "all",
     prompt: PROMETHEUS_SYSTEM_PROMPT,
     permission: PROMETHEUS_PERMISSION,
-    description: `${(params.configAgentPlan?.description as string) ?? "Plan agent"} (Prometheus - OhMyOpenCode)`,
+    description: `${(params.configAgentPlan?.description as string) ?? "Plan agent"} (Prometheus - OhMyOpenCodex)`,
     color: (params.configAgentPlan?.color as string) ?? "#FF5722",
     ...(temperatureToUse !== undefined ? { temperature: temperatureToUse } : {}),
     ...(topPToUse !== undefined ? { top_p: topPToUse } : {}),

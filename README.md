@@ -1,13 +1,13 @@
 > [!WARNING]
 > **Security warning: impersonation site**
 >
-> **ohmyopencode.com is NOT affiliated with this project.** We do not operate or endorse that site.
+> **ohmyopencodex.com is NOT affiliated with this project.** We do not operate or endorse that site.
 >
-> OhMyOpenCode is **free and open-source**. Do **not** download installers or enter payment details on third-party sites that claim to be "official."
+> OhMyOpenCodex is **free and open-source**. Do **not** download installers or enter payment details on third-party sites that claim to be "official."
 >
 > Because the impersonation site is behind a paywall, we **cannot verify what it distributes**. Treat any downloads from it as **potentially unsafe**.
 >
-> ✅ Official downloads: https://github.com/code-yeongyu/oh-my-opencode/releases
+> ✅ Official downloads: https://github.com/code-yeongyu/oh-my-opencodex/releases
 
 > [!NOTE]
 >
@@ -16,34 +16,34 @@
 
 > [!TIP]
 >
-> [![Oh My OpenCode 3.0 is now stable!](./.github/assets/orchestrator-atlas.png?v=3)](https://github.com/code-yeongyu/oh-my-opencode/releases/tag/v3.0.0)
-> > **Oh My OpenCode 3.0 is now stable! Use `oh-my-opencode@latest` to install it.**
+> [![Oh My OpenCodex 3.0 is now stable!](./.github/assets/orchestrator-atlas.png?v=3)](https://github.com/code-yeongyu/oh-my-opencodex/releases/tag/v3.0.0)
+> > **Oh My OpenCodex 3.0 is now stable! Use `oh-my-opencodex@latest` to install it.**
 >
 > Be with us!
 >
-> | [<img alt="Discord link" src="https://img.shields.io/discord/1452487457085063218?color=5865F2&label=discord&labelColor=black&logo=discord&logoColor=white&style=flat-square" width="156px" />](https://discord.gg/PUwSMR9XNk) | Join our [Discord community](https://discord.gg/PUwSMR9XNk) to connect with contributors and fellow `oh-my-opencode` users. |
+> | [<img alt="Discord link" src="https://img.shields.io/discord/1452487457085063218?color=5865F2&label=discord&labelColor=black&logo=discord&logoColor=white&style=flat-square" width="156px" />](https://discord.gg/PUwSMR9XNk) | Join our [Discord community](https://discord.gg/PUwSMR9XNk) to connect with contributors and fellow `oh-my-opencodex` users. |
 > | :-----| :----- |
-> | [<img alt="X link" src="https://img.shields.io/badge/Follow-%40justsisyphus-00CED1?style=flat-square&logo=x&labelColor=black" width="156px" />](https://x.com/justsisyphus) | News and updates for `oh-my-opencode` used to be posted on my X account. <br /> Since it was suspended mistakenly, [@justsisyphus](https://x.com/justsisyphus) now posts updates on my behalf. |
+> | [<img alt="X link" src="https://img.shields.io/badge/Follow-%40justsisyphus-00CED1?style=flat-square&logo=x&labelColor=black" width="156px" />](https://x.com/justsisyphus) | News and updates for `oh-my-opencodex` used to be posted on my X account. <br /> Since it was suspended mistakenly, [@justsisyphus](https://x.com/justsisyphus) now posts updates on my behalf. |
 > | [<img alt="GitHub Follow" src="https://img.shields.io/github/followers/code-yeongyu?style=flat-square&logo=github&labelColor=black&color=24292f" width="156px" />](https://github.com/code-yeongyu) | Follow [@code-yeongyu](https://github.com/code-yeongyu) on GitHub for more projects. |
 
 <!-- <CENTERED SECTION FOR GITHUB DISPLAY> -->
 
 <div align="center">
 
-[![Oh My OpenCode](./.github/assets/hero.jpg)](https://github.com/code-yeongyu/oh-my-opencode#oh-my-opencode)
+[![Oh My OpenCodex](./.github/assets/hero.jpg)](https://github.com/code-yeongyu/oh-my-opencodex#oh-my-opencodex)
 
-[![Preview](./.github/assets/omo.png)](https://github.com/code-yeongyu/oh-my-opencode#oh-my-opencode)
+[![Preview](./.github/assets/omo.png)](https://github.com/code-yeongyu/oh-my-opencodex#oh-my-opencodex)
 
 
 </div>
 
-> This is coding on steroids—`oh-my-opencode` in action. Run background agents, call specialized agents like oracle, librarian, and frontend engineer. Use crafted LSP/AST tools, curated MCPs, and a full Claude Code compatibility layer.
+> This is coding on steroids—`oh-my-opencodex` in action. Run background agents, call specialized agents like oracle, librarian, and frontend engineer. Use crafted LSP/AST tools, curated MCPs, and a full Claude Code compatibility layer.
 
 # Claude OAuth Access Notice
 
 ## TL;DR
 
-> Q. Can I use oh-my-opencode?
+> Q. Can I use oh-my-opencodex?
 
 Yes.
 
@@ -55,7 +55,7 @@ Yes, technically possible. But I cannot recommend using it.
 
 > As of January 2026, Anthropic has restricted third-party OAuth access citing ToS violations.
 >
-> [**Anthropic has cited this project, oh-my-opencode as justification for blocking opencode.**](https://x.com/thdxr/status/2010149530486911014)
+> [**Anthropic has cited this project, oh-my-opencodex as justification for blocking opencode.**](https://x.com/thdxr/status/2010149530486911014)
 >
 > Indeed, some plugins that spoof Claude Code's oauth request signatures exist in the community.
 >
@@ -66,14 +66,14 @@ Yes, technically possible. But I cannot recommend using it.
 
 <div align="center">
 
-[![GitHub Release](https://img.shields.io/github/v/release/code-yeongyu/oh-my-opencode?color=369eff&labelColor=black&logo=github&style=flat-square)](https://github.com/code-yeongyu/oh-my-opencode/releases)
-[![npm downloads](https://img.shields.io/npm/dt/oh-my-opencode?color=ff6b35&labelColor=black&style=flat-square)](https://www.npmjs.com/package/oh-my-opencode)
-[![GitHub Contributors](https://img.shields.io/github/contributors/code-yeongyu/oh-my-opencode?color=c4f042&labelColor=black&style=flat-square)](https://github.com/code-yeongyu/oh-my-opencode/graphs/contributors)
-[![GitHub Forks](https://img.shields.io/github/forks/code-yeongyu/oh-my-opencode?color=8ae8ff&labelColor=black&style=flat-square)](https://github.com/code-yeongyu/oh-my-opencode/network/members)
-[![GitHub Stars](https://img.shields.io/github/stars/code-yeongyu/oh-my-opencode?color=ffcb47&labelColor=black&style=flat-square)](https://github.com/code-yeongyu/oh-my-opencode/stargazers)
-[![GitHub Issues](https://img.shields.io/github/issues/code-yeongyu/oh-my-opencode?color=ff80eb&labelColor=black&style=flat-square)](https://github.com/code-yeongyu/oh-my-opencode/issues)
-[![License](https://img.shields.io/badge/license-SUL--1.0-white?labelColor=black&style=flat-square)](https://github.com/code-yeongyu/oh-my-opencode/blob/master/LICENSE.md)
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/code-yeongyu/oh-my-opencode)
+[![GitHub Release](https://img.shields.io/github/v/release/code-yeongyu/oh-my-opencodex?color=369eff&labelColor=black&logo=github&style=flat-square)](https://github.com/code-yeongyu/oh-my-opencodex/releases)
+[![npm downloads](https://img.shields.io/npm/dt/oh-my-opencodex?color=ff6b35&labelColor=black&style=flat-square)](https://www.npmjs.com/package/oh-my-opencodex)
+[![GitHub Contributors](https://img.shields.io/github/contributors/code-yeongyu/oh-my-opencodex?color=c4f042&labelColor=black&style=flat-square)](https://github.com/code-yeongyu/oh-my-opencodex/graphs/contributors)
+[![GitHub Forks](https://img.shields.io/github/forks/code-yeongyu/oh-my-opencodex?color=8ae8ff&labelColor=black&style=flat-square)](https://github.com/code-yeongyu/oh-my-opencodex/network/members)
+[![GitHub Stars](https://img.shields.io/github/stars/code-yeongyu/oh-my-opencodex?color=ffcb47&labelColor=black&style=flat-square)](https://github.com/code-yeongyu/oh-my-opencodex/stargazers)
+[![GitHub Issues](https://img.shields.io/github/issues/code-yeongyu/oh-my-opencodex?color=ff80eb&labelColor=black&style=flat-square)](https://github.com/code-yeongyu/oh-my-opencodex/issues)
+[![License](https://img.shields.io/badge/license-SUL--1.0-white?labelColor=black&style=flat-square)](https://github.com/code-yeongyu/oh-my-opencodex/blob/master/LICENSE.md)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/code-yeongyu/oh-my-opencodex)
 
 [English](README.md) | [한국어](README.ko.md) | [日本語](README.ja.md) | [简体中文](README.zh-cn.md)
 
@@ -91,7 +91,7 @@ Yes, technically possible. But I cannot recommend using it.
 
 > "I converted a 45k line tauri app into a SaaS web app overnight using Ohmyopencode and ralph loop. Started with interview me prompt, asked it for ratings and recommendations on the questions. It was amazing to watch it work and to wake up this morning to a mostly working website!" - [James Hargis](https://x.com/hargabyte/status/2007299688261882202)
 
-> "use oh-my-opencode, you will never go back" — [d0t3ch](https://x.com/d0t3ch/status/2001685618200580503)
+> "use oh-my-opencodex, you will never go back" — [d0t3ch](https://x.com/d0t3ch/status/2001685618200580503)
 
 > "I haven't really been able to articulate exactly what makes it so great yet, but the development experience has reached a completely different dimension." - [
 苔硯:こけすずり](https://x.com/kokesuzuri/status/2008532913961529372?s=20)
@@ -103,13 +103,13 @@ Yes, technically possible. But I cannot recommend using it.
 
 > "Hire @yeon_gyu_kim if you can convince him, this dude has revolutionized opencode." — [mysticaltech](https://x.com/mysticaltech/status/2001858758608376079)
 
-> "Oh My OpenCode Is Actually Insane" - [YouTube - Darren Builds AI](https://www.youtube.com/watch?v=G_Snfh2M41M)
+> "Oh My OpenCodex Is Actually Insane" - [YouTube - Darren Builds AI](https://www.youtube.com/watch?v=G_Snfh2M41M)
 
 ---
 
 ## Contents
 
-- [Oh My OpenCode](#oh-my-opencode)
+- [Oh My OpenCodex](#oh-my-opencodex)
   - [Just Skip Reading This Readme](#just-skip-reading-this-readme)
     - [It's the Age of Agents](#its-the-age-of-agents)
     - [🪄 The Magic Word: `ultrawork`](#-the-magic-word-ultrawork)
@@ -126,7 +126,7 @@ Yes, technically possible. But I cannot recommend using it.
   - [Warnings](#warnings)
   - [Loved by professionals at](#loved-by-professionals-at)
 
-# Oh My OpenCode
+# Oh My OpenCodex
 
 [Claude Code](https://www.claude.com/product/claude-code) is great.
 But if you're a hacker, you'll fall head over heels for [OpenCode](https://github.com/sst/opencode).
@@ -158,7 +158,7 @@ Hand this doc to an agent and let them set it up.
 As following:
 
 ```
-Hey please read this readme and tell me why it is different from other agent harness? why is this actually good? https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/refs/heads/dev/README.md
+Hey please read this readme and tell me why it is different from other agent harness? why is this actually good? https://raw.githubusercontent.com/code-yeongyu/oh-my-opencodex/refs/heads/dev/README.md
 ```
 
 ### 🪄 The Magic Word: `ultrawork`
@@ -215,7 +215,7 @@ Just by installing this, you make your agents to work like:
 
 Need to look something up? It scours official docs, your entire codebase history, and public GitHub implementations—using not just grep but built-in LSP tools and AST-Grep.
 3. Stop worrying about context management when delegating to LLMs. I've got it covered.
-    - OhMyOpenCode aggressively leverages multiple agents to lighten the context load.
+    - OhMyOpenCodex aggressively leverages multiple agents to lighten the context load.
     - **Your agent is now the dev team lead. You're the AI Manager.**
 4. It doesn't stop until the job is done.
 5. Don't want to dive deep into this project? No problem. Just type 'ultrathink'.
@@ -247,8 +247,8 @@ Hephaestus is inspired by [AmpCode's deep mode](https://ampcode.com)—autonomou
 Copy and paste this prompt to your LLM agent (Claude Code, AmpCode, Cursor, etc.):
 
 ```
-Install and configure oh-my-opencode by following the instructions here:
-https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/refs/heads/master/docs/guide/installation.md
+Install and configure oh-my-opencodex by following the instructions here:
+https://raw.githubusercontent.com/code-yeongyu/oh-my-opencodex/refs/heads/master/docs/guide/installation.md
 ```
 
 Or read the [Installation Guide](docs/guide/installation.md) directly—but **we strongly recommend letting an agent handle it. Humans make mistakes.**
@@ -258,20 +258,20 @@ Or read the [Installation Guide](docs/guide/installation.md) directly—but **we
 Fetch the installation guide and follow it:
 
 ```bash
-curl -s https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/refs/heads/master/docs/guide/installation.md
+curl -s https://raw.githubusercontent.com/code-yeongyu/oh-my-opencodex/refs/heads/master/docs/guide/installation.md
 ```
 
 ## Uninstallation
 
-To remove oh-my-opencode:
+To remove oh-my-opencodex:
 
 1. **Remove the plugin from your OpenCode config**
 
-   Edit `~/.config/opencode/opencode.json` (or `opencode.jsonc`) and remove `"oh-my-opencode"` from the `plugin` array:
+   Edit `~/.config/opencode/opencode.json` (or `opencode.jsonc`) and remove `"oh-my-opencodex"` from the `plugin` array:
 
    ```bash
    # Using jq
-   jq '.plugin = [.plugin[] | select(. != "oh-my-opencode")]' \
+   jq '.plugin = [.plugin[] | select(. != "oh-my-opencodex")]' \
        ~/.config/opencode/opencode.json > /tmp/oc.json && \
        mv /tmp/oc.json ~/.config/opencode/opencode.json
    ```
@@ -280,10 +280,10 @@ To remove oh-my-opencode:
 
    ```bash
    # Remove user config
-   rm -f ~/.config/opencode/oh-my-opencode.json ~/.config/opencode/oh-my-opencode.jsonc
+   rm -f ~/.config/opencode/oh-my-opencodex.json ~/.config/opencode/oh-my-opencodex.jsonc
 
    # Remove project config (if exists)
-   rm -f .opencode/oh-my-opencode.json .opencode/oh-my-opencode.jsonc
+   rm -f .opencode/oh-my-opencodex.json .opencode/oh-my-opencodex.jsonc
    ```
 
 3. **Verify removal**
@@ -314,7 +314,7 @@ Highly opinionated, but adjustable to taste.
 See the full [Configuration Documentation](docs/configurations.md) for detailed information.
 
 **Quick Overview:**
-- **Config Locations**: `.opencode/oh-my-opencode.jsonc` or `.opencode/oh-my-opencode.json` (project), `~/.config/opencode/oh-my-opencode.jsonc` or `~/.config/opencode/oh-my-opencode.json` (user)
+- **Config Locations**: `.opencode/oh-my-opencodex.jsonc` or `.opencode/oh-my-opencodex.json` (project), `~/.config/opencode/oh-my-opencodex.jsonc` or `~/.config/opencode/oh-my-opencodex.json` (user)
 - **JSONC Support**: Comments and trailing commas supported
 - **Agents**: Override models, temperatures, prompts, and permissions for any agent
 - **Built-in Skills**: `playwright` (browser automation), `git-master` (atomic commits)
@@ -331,13 +331,13 @@ See the full [Configuration Documentation](docs/configurations.md) for detailed 
 
 **Curious about the philosophy behind this project?** Read the [Ultrawork Manifesto](docs/ultrawork-manifesto.md).
 
-Install Oh My OpenCode.
+Install Oh My OpenCodex.
 
 I've used LLMs worth $24,000 tokens purely for personal development.
 Tried every tool out there, configured them to death. OpenCode won.
 
 The answers to every problem I hit are baked into this plugin. Just install and go.
-If OpenCode is Debian/Arch, Oh My OpenCode is Ubuntu/[Omarchy](https://omarchy.org/).
+If OpenCode is Debian/Arch, Oh My OpenCodex is Ubuntu/[Omarchy](https://omarchy.org/).
 
 
 Heavily influenced by [AmpCode](https://ampcode.com) and [Claude Code](https://code.claude.com/docs/overview)—I've ported their features here, often improved. And I'm still building.
@@ -370,7 +370,7 @@ I have no affiliation with any project or model mentioned here. This is purely p
   - Actually, I'll spread the word. Let's see who wins.
 - If you're on [1.0.132](https://github.com/sst/opencode/releases/tag/v1.0.132) or older, an OpenCode bug may break config.
   - [The fix](https://github.com/sst/opencode/pull/5040) was merged after 1.0.132—use a newer version.
-    - Fun fact: That PR was discovered and fixed thanks to OhMyOpenCode's Librarian, Explore, and Oracle setup.
+    - Fun fact: That PR was discovered and fixed thanks to OhMyOpenCodex's Librarian, Explore, and Oracle setup.
 
 ## Loved by professionals at
 

@@ -361,7 +361,7 @@ Press `Tab` at the prompt to see available agents:
 
 ## 9. Configuration Guide
 
-You can control related features in `oh-my-opencode.json`.
+You can control related features in `oh-my-opencodex.json`.
 
 ```jsonc
 {

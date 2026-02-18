@@ -150,9 +150,9 @@ When delegating, **clear and specific** prompts are essential. Include these 7 e
 
 ---
 
-## 6. Configuration Guide (oh-my-opencode.json)
+## 6. Configuration Guide (oh-my-opencodex.json)
 
-You can fine-tune categories in `oh-my-opencode.json`.
+You can fine-tune categories in `oh-my-opencodex.json`.
 
 ### Category Configuration Schema (CategoryConfig)
 

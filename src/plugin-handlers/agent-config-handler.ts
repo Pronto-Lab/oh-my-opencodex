@@ -1,6 +1,6 @@
 import { createBuiltinAgents } from "../agents";
 import { createSisyphusJuniorAgentWithOverrides } from "../agents/sisyphus-junior";
-import type { OhMyOpenCodeConfig } from "../config";
+import type { OhMyOpenCodexConfig } from "../config";
 import { log, migrateAgentConfig } from "../shared";
 import { AGENT_NAME_MAP } from "../shared/migration";
 import { getAgentDisplayName } from "../shared/agent-display-names";
@@ -33,7 +33,7 @@ function getConfiguredDefaultAgent(config: Record<string, unknown>): string | un
 
 export async function applyAgentConfig(params: {
   config: Record<string, unknown>;
-  pluginConfig: OhMyOpenCodeConfig;
+  pluginConfig: OhMyOpenCodexConfig;
   ctx: { directory: string; client?: any };
   pluginComponents: PluginComponents;
 }): Promise<Record<string, unknown>> {
